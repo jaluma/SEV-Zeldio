@@ -25,17 +25,17 @@ function iniciarJuego() {
 }
 
 
+function loop() {
+    if (layer != null) {
+        layer.actualizar();
+        if (entrada == entradas.pulsaciones) {
+            layer.calcularPulsaciones(pulsaciones);
+        }
+        layer.procesarControles()
+        layer.dibujar();
 
-function loop(){
-    console.log("loop - ")
-    layer.actualizar();
-    if (entrada == entradas.pulsaciones) {
-        layer.calcularPulsaciones(pulsaciones);
+        actualizarPulsaciones();
     }
-    layer.procesarControles()
-    layer.dibujar();
-
-    actualizarPulsaciones();
 }
 
 function actualizarPulsaciones () {
@@ -46,9 +46,11 @@ function actualizarPulsaciones () {
     }
 }
 
-
-
 // Cambio de escalado
+
+window.requestAnimationFrame(loop);
+contexto.fillRect(0, 0, canvas.width, canvas.height);
+
 window.addEventListener('load', resize, false);
 
 function resize() {
@@ -63,3 +65,4 @@ function resize() {
 
     contexto.scale(escaladoMinimo,escaladoMinimo);
 }
+
