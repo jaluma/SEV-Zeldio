@@ -9,10 +9,6 @@ class GameLayer extends Layer {
     iniciar() {
         this.espacio = new Espacio(0);
 
-        this.botonSalto = new Boton(imagenes.boton_salto, resolution.width * 0.9, resolution.height * 0.55);
-        this.botonDisparo = new Boton(imagenes.boton_disparo, resolution.width * 0.75, resolution.height * 0.83);
-        this.pad = new Pad(resolution.width * 0.14, resolution.height * 0.8);
-
         this.scrollX = 0;
         this.bloques = [];
 
@@ -252,54 +248,6 @@ class GameLayer extends Layer {
         // modificación para empezar a contar desde el suelo
         this.bloques.push(bloque);
         return bloque
-    }
-
-    calcularPulsaciones(pulsaciones) {
-        // Suponemos botones no estan pulsados
-        this.botonDisparo.pulsado = false;
-        this.botonSalto.pulsado = false;
-
-        // suponemos que el pad está sin tocar
-        controles.moverX = 0;
-        controles.moverY = 0;
-
-        for (var i = 0; i < pulsaciones.length; i++) {
-            if (this.pad.contienePunto(pulsaciones[i].x, pulsaciones[i].y)) {
-                var orientacionX = this.pad.obtenerOrientacionX(pulsaciones[i].x);
-                if (orientacionX > 20) { // de 0 a 20 no contabilizamos
-                    controles.moverX = 1;
-                }
-                if (orientacionX < -20) { // de -20 a 0 no contabilizamos
-                    controles.moverX = -1;
-                }
-            }
-
-
-            if (this.botonDisparo.contienePunto(pulsaciones[i].x, pulsaciones[i].y)) {
-                this.botonDisparo.pulsado = true;
-                if (pulsaciones[i].tipo == tipoPulsacion.inicio) {
-                    controles.disparo = true;
-                }
-            }
-
-            if (this.botonSalto.contienePunto(pulsaciones[i].x, pulsaciones[i].y)) {
-                this.botonSalto.pulsado = true;
-                if (pulsaciones[i].tipo == tipoPulsacion.inicio) {
-                    controles.moverY = 1;
-                }
-            }
-
-        }
-
-        // No pulsado - Boton Disparo
-        if (!this.botonDisparo.pulsado) {
-            controles.disparo = false;
-        }
-
-        // No pulsado - Boton Salto
-        if (!this.botonSalto.pulsado) {
-            controles.moverY = 0;
-        }
     }
 
 

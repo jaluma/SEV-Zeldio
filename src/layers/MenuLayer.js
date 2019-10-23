@@ -10,29 +10,14 @@ class MenuLayer extends Layer {
             new Fondo(imagenes.menu_fondo, resolution.width * 0.5, resolution.height * 0.5);
         this.boton =
             new Boton(imagenes.boton_jugar, resolution.width * 0.5, resolution.height * 0.7);
+
+        this.texto = new Texto("Pulsa SPACE para empezar...", resolution.width * 0.5, resolution.height * 0.8);
     }
 
     dibujar() {
         this.fondo.dibujar();
         this.boton.dibujar();
-    }
-
-    calcularPulsaciones(pulsaciones) {
-        this.boton.pulsado = false;
-
-        for (var i = 0; i < pulsaciones.length; i++) {
-            if (this.boton.contienePunto(pulsaciones[i].x, pulsaciones[i].y)) {
-                this.boton.pulsado = true;
-                if (pulsaciones[i].tipo == tipoPulsacion.inicio) {
-                    controles.continuar = true;
-                }
-            }
-        }
-
-        // No pulsado - Botón Disparo
-        if (!this.boton.pulsado) {
-            controles.continuar = false;
-        }
+        this.texto.dibujar();
     }
 
     procesarControles() {

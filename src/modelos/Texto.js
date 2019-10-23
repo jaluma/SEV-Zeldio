@@ -7,9 +7,9 @@ class Texto {
     }
 
     dibujar() {
-        contexto.font = "40px Arial";
+        contexto.font = "72px Consoles, Monaco, monospace";
         contexto.fillStyle = "white";
-        contexto.textAlign = "left";
+        contexto.textAlign = "center";
         contexto.fillText(this.valor, this.x, this.y);
     }
 
