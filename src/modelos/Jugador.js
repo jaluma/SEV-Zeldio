@@ -28,6 +28,9 @@ class Jugador extends Modelo {
         //     this.ancho, this.alto, 6, 4, this.finAnimacionAtacar.bind(this));
 
         this.animacion = this.aIdle;
+
+        this.monedas = 0
+        this.vidas = 3
     }
 
     actualizar() {
