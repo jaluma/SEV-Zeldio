@@ -32,6 +32,12 @@ var imagenes = {
     cesped_ii: "res/bloques/cesped/cesped_ii.png",
     cesped_ic: "res/bloques/cesped/cesped_ic.png",
     cesped_id: "res/bloques/cesped/cesped_id.png",
+    cast1: "res/bloques/castillo/Cas1.png",
+    cast2: "res/bloques/castillo/Cas2.png",
+    cast3: "res/bloques/castillo/Cas3.png",
+    cast4: "res/bloques/castillo/Cas4.png",
+    cast5: "res/bloques/castillo/Cas5.png",
+    cast6: "res/bloques/castillo/Cas6.png",
 };
 
 var rutasImagenes = Object.values(imagenes);

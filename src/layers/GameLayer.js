@@ -228,6 +228,32 @@ class GameLayer extends Layer {
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 this.añadirBloque(imagenes.cruce_supizqda, x, y)
                 break;
+            case this.getCase(simbolo, "Cas1"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.cast1, x, y)
+                break;
+            case this.getCase(simbolo, "Cas2"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.camino_izqda, x, y)
+                this.añadirBloqueEstatico(imagenes.cast2, x, y)
+                break;
+            case this.getCase(simbolo, "Cas3"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.cast3, x, y)
+                break;
+            case this.getCase(simbolo, "Cas4"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.camino_dcha, x, y)
+                this.añadirBloqueEstatico(imagenes.cast4, x, y)
+                break;
+            case this.getCase(simbolo, "Cas5"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.cast5, x, y)
+                break;
+            case this.getCase(simbolo, "Cas6"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.cast6, x, y)
+                break;
             default:
                 this.añadirBloque(imagenes.cesped_cc, x, y)
         }
