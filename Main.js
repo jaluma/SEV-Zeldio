@@ -26,14 +26,16 @@ function iniciarJuego() {
 }
 
 function loop() {
-    layer.actualizar();
-    if (entrada == entradas.pulsaciones) {
-        layer.calcularPulsaciones(pulsaciones);
-    }
-    layer.procesarControles()
-    layer.dibujar();
+    if (layer != null) {
+        layer.actualizar();
+        if (entrada == entradas.pulsaciones) {
+            layer.calcularPulsaciones(pulsaciones);
+        }
+        layer.procesarControles()
+        layer.dibujar();
 
-    actualizarPulsaciones();
+        actualizarPulsaciones();
+    }
 }
 
 function updateCanvas() {
@@ -55,5 +57,19 @@ function actualizarPulsaciones() {
 }
 
 window.requestAnimationFrame(loop);
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-makeTileCover(ctx, mousex, mousey);
+contexto.fillRect(0, 0, canvas.width, canvas.height);
+
+window.addEventListener('load', resize, false);
+
+function resize() {
+    console.log("Resize")
+    var escaladoAncho = parseFloat(window.innerWidth / canvas.width);
+    var escaladoAlto = parseFloat(window.innerHeight / canvas.height);
+
+    escaladoMinimo = Math.min(escaladoAncho, escaladoAlto);
+
+    canvas.width = canvas.width * escaladoMinimo;
+    canvas.height = canvas.height * escaladoMinimo;
+
+    contexto.scale(escaladoMinimo, escaladoMinimo);
+}

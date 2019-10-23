@@ -159,47 +159,52 @@ class GameLayer extends Layer {
                 // modificación para empezar a contar desde el suelo
                 this.enemigos.push(enemigo);
                 this.espacio.agregarCuerpoDinamico(enemigo);
+                this.añadirBloque(imagenes.cesped_cc, x, y)
                 break;
             case "Pl_1":
                 this.jugador = new Jugador(x, y);
                 // modificación para empezar a contar desde el suelo
                 this.jugador.y = this.jugador.y - this.jugador.alto / 2;
                 this.espacio.agregarCuerpoDinamico(this.jugador);
+                this.añadirBloque(imagenes.cesped_cc, x, y)
                 break;
         }
 
         // añadimos los bloques
         switch (simbolo) {
-            case "C_si":
+            case this.getCase(simbolo, "C_si"):
                 this.añadirBloque(imagenes.cesped_si, x, y)
                 break;
-            case "C_sc":
+            case this.getCase(simbolo, "C_sc"):
                 this.añadirBloque(imagenes.cesped_sc, x, y)
                 break;
-            case "C_sd":
+            case this.getCase(simbolo, "C_sd"):
                 this.añadirBloque(imagenes.cesped_sd, x, y)
                 break;
-            case "C_ci":
+            case this.getCase(simbolo, "C_ci"):
                 this.añadirBloque(imagenes.cesped_ci, x, y)
                 break;
-            case "C_cc":
+            case this.getCase(simbolo, "C_cc"):
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 break;
-            case "C_cd":
+            case this.getCase(simbolo, "C_cd"):
                 this.añadirBloque(imagenes.cesped_cd, x, y)
                 break;
-            case "C_ii":
+            case this.getCase(simbolo, "C_ii"):
                 this.añadirBloque(imagenes.cesped_ii, x, y)
                 break;
-            case "C_ic":
+            case this.getCase(simbolo, "C_ic"):
                 this.añadirBloque(imagenes.cesped_ic, x, y)
                 break;
-            case "C_id":
+            case this.getCase(simbolo, "C_id"):
                 this.añadirBloque(imagenes.cesped_id, x, y)
                 break;
-            default:
-                this.añadirBloque(imagenes.cesped_cc, x, y)
         }
+    }
+
+    getCase(symbol, c) {
+        var rt = symbol.includes(c)
+        return rt ? symbol : ''
     }
 
     añadirBloque(imagen, x, y) {
