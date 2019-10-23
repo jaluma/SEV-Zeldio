@@ -180,22 +180,18 @@ class GameLayer extends Layer {
 
         // objetos del mapa
         switch (simbolo) {
-            //muro invisible
-            case this.getCase(simbolo, "0000"):
-                this.añadirBloqueEstatico(imagenes.transparente, x, y)
-                break;
-                // arbol verde
             case this.getCase(simbolo, "ArbP"):
+                // arbol verde
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 this.añadirBloqueEstatico(imagenes.treeP, x, y)
                 break;
-                // arbol rojo
             case this.getCase(simbolo, "ArbC"):
+                // arbol rojo
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 this.añadirBloqueEstatico(imagenes.treeC, x, y)
                 break;
-                // moneda
             case this.getCase(simbolo, "Mone"):
+                // moneda
                 var moneda = new Moneda(imagenes.moneda, x, y);
                 moneda.y = moneda.y - moneda.alto / 2;
                 this.coleccionables.push(moneda);
@@ -205,9 +201,12 @@ class GameLayer extends Layer {
         }
 
         // añadimos los bloques
-
         // cesped
         switch (simbolo) {
+            case this.getCase(simbolo, "0000"):
+                //muro invisible
+                this.añadirBloqueEstatico(imagenes.transparente, x, y)
+                break;
             case this.getCase(simbolo, "C_si"):
                 this.añadirBloque(imagenes.cesped_si, x, y)
                 break;
@@ -262,6 +261,36 @@ class GameLayer extends Layer {
             case this.getCase(simbolo, "Cr_i"):
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 this.añadirBloque(imagenes.cruce_supizqda, x, y)
+                break;
+        }
+
+        // castillo
+        switch (simbolo) {
+            case this.getCase(simbolo, "Cas1"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.cast1, x, y)
+                break;
+            case this.getCase(simbolo, "Cas2"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.camino_izqda, x, y)
+                this.añadirBloqueEstatico(imagenes.cast2, x, y)
+                break;
+            case this.getCase(simbolo, "Cas3"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.cast3, x, y)
+                break;
+            case this.getCase(simbolo, "Cas4"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.camino_dcha, x, y)
+                this.añadirBloqueEstatico(imagenes.cast4, x, y)
+                break;
+            case this.getCase(simbolo, "Cas5"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.cast5, x, y)
+                break;
+            case this.getCase(simbolo, "Cas6"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.cast6, x, y)
                 break;
         }
     }
