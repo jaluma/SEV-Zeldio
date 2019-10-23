@@ -4,7 +4,7 @@ class Coleccionable extends Modelo {
         super(rutaImagen, x, y)
     }
 
-    colosion(modelo) {
+    colision(modelo) {
         // hay que redefinir segun el uso
     }
 

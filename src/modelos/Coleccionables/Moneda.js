@@ -18,7 +18,7 @@ class Moneda extends Coleccionable {
         this.animacion.dibujar(this.x - scrollX, this.y - scrollY);
     }
 
-    colosion(jugador) {
+    colision(jugador) {
         jugador.monedas += this.valor
     }
 

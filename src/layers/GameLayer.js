@@ -14,6 +14,7 @@ class GameLayer extends Layer {
 
         this.fondo = new Fondo(imagenes.fondo_2, resolution.width * 0.5, resolution.height * 0.5);
 
+        this.generadoresEnemigos = []
         this.enemigos = [];
 
         this.coleccionables = []
@@ -49,6 +50,9 @@ class GameLayer extends Layer {
         }
 
         this.jugador.actualizar();
+        for (var i = 0; i < this.generadoresEnemigos.length; i++) {
+            this.generadoresEnemigos[i].actualizar();
+        }
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].actualizar();
         }
@@ -60,7 +64,10 @@ class GameLayer extends Layer {
         // colisiones
         for (var i = 0; i < this.enemigos.length; i++) {
             if (this.jugador.colisiona(this.enemigos[i])) {
-                this.iniciar();
+                this.jugador.perderVida()
+
+                this.enemigos.splice(i, 1);
+                i = i - 1;
             }
         }
 
@@ -76,7 +83,9 @@ class GameLayer extends Layer {
         this.monedas.valor = this.jugador.monedas
 
         var vidasAEliminar = this.iconoVidas.length - this.jugador.vidas
-        this.iconoVidas.splice(this.iconoVidas.length - 1 - vidasAEliminar, vidasAEliminar);
+        if (vidasAEliminar > 0) {
+            this.iconoVidas.splice(this.iconoVidas.length - vidasAEliminar, vidasAEliminar);
+        }
     }
 
     calcularScroll() {
@@ -94,6 +103,9 @@ class GameLayer extends Layer {
         }
 
         this.jugador.dibujar(this.scrollX, this.scrollY);
+        for (var i = 0; i < this.generadoresEnemigos.length; i++) {
+            this.generadoresEnemigos[i].dibujar(this.scrollX, this.scrollY);
+        }
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].dibujar(this.scrollX, this.scrollY);
         }
@@ -168,19 +180,21 @@ class GameLayer extends Layer {
 
     cargarObjetoMapa(simbolo, x, y) {
         switch (simbolo) {
-            case "E":
-                var enemigo = new Enemigo(x, y);
-                enemigo.y = enemigo.y - enemigo.alto / 2;
-                // modificación para empezar a contar desde el suelo
-                this.enemigos.push(enemigo);
-                this.espacio.agregarCuerpoDinamico(enemigo);
-                this.añadirBloque(imagenes.cesped_cc, x, y)
-                break;
             case "Pl_1":
+                // jugador 1
                 this.jugador = new Jugador(x, y);
                 // modificación para empezar a contar desde el suelo
                 this.jugador.y = this.jugador.y - this.jugador.alto / 2;
                 this.espacio.agregarCuerpoDinamico(this.jugador);
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                break;
+            case "G_En":
+                // Generador de enemigos
+                var generadorEnemigos = new GeneradorEnemigos(imagenes.teleport_azul, x, y)
+                generadorEnemigos.y = generadorEnemigos.y - generadorEnemigos.alto / 2;
+                // modificación para empezar a contar desde el suelo
+                this.generadoresEnemigos.push(generadorEnemigos)
+                this.espacio.agregarCuerpoEstatico(generadorEnemigos);
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 break;
         }

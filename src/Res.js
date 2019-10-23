@@ -41,6 +41,18 @@ var imagenes = {
     cast4: "res/bloques/castillo/Cas4.png",
     cast5: "res/bloques/castillo/Cas5.png",
     cast6: "res/bloques/castillo/Cas6.png",
+    rickEnemigo: "res/enemigos/rick/1.png",
+    rickEnemigoAbajo: "res/enemigos/rick/rick_abajo.png",
+    rickEnemigoArriba: "res/enemigos/rick/rick_arriba.png",
+    rickEnemigoIzquierda: "res/enemigos/rick/rick_izquierda.png",
+    rickEnemigoDerecha: "res/enemigos/rick/rick_derecha.png",
+    rickEnemigoMorir: "res/enemigos/rick/1.png",
+    teleport_azul: "res/enemigos/teleport_1.png",
+    teleport_azul_a: "res/enemigos/teleport_azul.png",
+    teleport_naranja: "res/enemigos/teleport_4.png",
+    teleport_naranja_a: "res/enemigos/teleport_naranja.png"
+
+
 };
 
 var rutasImagenes = Object.values(imagenes);

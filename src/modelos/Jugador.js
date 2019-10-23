@@ -31,6 +31,8 @@ class Jugador extends Modelo {
 
         this.monedas = 0
         this.vidas = 3
+
+        this.lastPerdida = Date.now()
     }
 
     actualizar() {
@@ -109,6 +111,13 @@ class Jugador extends Modelo {
         scrollX = scrollX || 0;
         scrollY = scrollY || 0;
         this.animacion.dibujar(this.x - scrollX, this.y - scrollY);
+    }
+
+    perderVida() {
+        if (Date.now() - this.lastPerdida > 5 * 1000) {
+            this.vidas--
+                this.lastPerdida = Date.now()
+        }
     }
 
 }
