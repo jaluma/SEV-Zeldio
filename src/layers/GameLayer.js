@@ -170,14 +170,14 @@ class GameLayer extends Layer {
 
         // añadimos los bloques
         switch (simbolo) {
+            case "C_sd":
+                this.añadirBloque(imagenes.cesped_sd, x, y)
+                break;
             case "C_si":
                 this.añadirBloque(imagenes.cesped_si, x, y)
                 break;
             case "C_sc":
                 this.añadirBloque(imagenes.cesped_sc, x, y)
-                break;
-            case "C_sd":
-                this.añadirBloque(imagenes.cesped_sd, x, y)
                 break;
             case "C_ci":
                 this.añadirBloque(imagenes.cesped_ci, x, y)
@@ -196,6 +196,9 @@ class GameLayer extends Layer {
                 break;
             case "C_id":
                 this.añadirBloque(imagenes.cesped_id, x, y)
+                break;
+            case "Tree":
+                this.añadirBloque(imagenes.tree, x, y)
                 break;
             default:
                 this.añadirBloque(imagenes.cesped_cc, x, y)

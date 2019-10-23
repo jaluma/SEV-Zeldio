@@ -38,6 +38,7 @@ var imagenes = {
     cesped_ii: "res/bloques/cesped_ii.png",
     cesped_ic: "res/bloques/cesped_ic.png",
     cesped_id: "res/bloques/cesped_id.png",
+    tree: "res/bloques/arbol.png",
 };
 
 var rutasImagenes = Object.values(imagenes);
