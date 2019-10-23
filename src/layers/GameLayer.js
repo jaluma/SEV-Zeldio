@@ -200,8 +200,37 @@ class GameLayer extends Layer {
             case this.getCase(simbolo, "C_id"):
                 this.añadirBloque(imagenes.cesped_id, x, y)
                 break;
-            case "Tree":
-                this.añadirBloque(imagenes.tree, x, y)
+            case this.getCase(simbolo, "ArbP"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.treeP, x, y)
+                break;
+            case this.getCase(simbolo, "ArbC"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.treeC, x, y)
+                break;
+            case this.getCase(simbolo, "Ca_s"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.camino_sup, x, y)
+                break;
+            case this.getCase(simbolo, "Ca_a"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.camino_abajo, x, y)
+                break;
+            case this.getCase(simbolo, "Ca_i"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.camino_izqda, x, y)
+                break;
+            case this.getCase(simbolo, "Ca_d"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.camino_dcha, x, y)
+                break;
+            case this.getCase(simbolo, "Cr_d"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.cruce_supdcha, x, y)
+                break;
+            case this.getCase(simbolo, "Cr_i"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(imagenes.cruce_supizqda, x, y)
                 break;
             default:
                 this.añadirBloque(imagenes.cesped_cc, x, y)
@@ -213,11 +242,16 @@ class GameLayer extends Layer {
         return rt ? symbol : ''
     }
 
+    añadirBloqueEstatico(imagen, x, y) {
+        this.espacio.agregarCuerpoEstatico(this.añadirBloque(imagen, x, y))
+    }
+
     añadirBloque(imagen, x, y) {
         var bloque = new Bloque(imagen, x, y);
         bloque.y = bloque.y - bloque.alto / 2;
         // modificación para empezar a contar desde el suelo
         this.bloques.push(bloque);
+        return bloque
     }
 
     calcularPulsaciones(pulsaciones) {

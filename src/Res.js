@@ -38,7 +38,14 @@ var imagenes = {
     cesped_ii: "res/bloques/cesped_ii.png",
     cesped_ic: "res/bloques/cesped_ic.png",
     cesped_id: "res/bloques/cesped_id.png",
-    tree: "res/bloques/arbol.png",
+    treeP: "res/bloques/arbolperenne.png",
+    treeC: "res/bloques/arbolcaduca.png",
+    camino_sup: "res/bloques/caminosuperior.png",
+    camino_abajo: "res/bloques/caminoinferior.png",
+    camino_izqda: "res/bloques/caminoizqda.png",
+    camino_dcha: "res/bloques/caminodcha.png",
+    cruce_supdcha: "res/bloques/caminosupdcha.png",
+    cruce_supizqda: "res/bloques/caminosupizqda.png",
 };
 
 var rutasImagenes = Object.values(imagenes);
