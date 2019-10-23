@@ -19,9 +19,17 @@ class GameLayer extends Layer {
         this.coleccionables = []
 
         this.iconoMonedas = new Fondo(imagenes.moneda, resolution.width * 0.85, resolution.height * 0.05);
-
         this.monedas = new Texto(0, resolution.width * 0.9, resolution.height * 0.07);
+
         this.cargarMapa("res/" + nivelActual + ".txt");
+
+        // cargar despues del mapa cuando se sepa las vidas del jugador
+        this.iconoVidas = []
+        var initialX = 0.1
+        for (var i = 0; i < this.jugador.vidas; i++) {
+            var x = parseFloat(initialX + i * 0.03).toFixed(2)
+            this.iconoVidas.push(new Fondo(imagenes.icono_vidas, resolution.width * x, resolution.height * 0.05))
+        }
     }
 
     actualizar() {
@@ -67,6 +75,8 @@ class GameLayer extends Layer {
 
         this.monedas.valor = this.jugador.monedas
 
+        var vidasAEliminar = this.iconoVidas.length - this.jugador.vidas
+        this.iconoVidas.splice(this.iconoVidas.length - 1 - vidasAEliminar, vidasAEliminar);
     }
 
     calcularScroll() {
@@ -96,12 +106,9 @@ class GameLayer extends Layer {
         this.iconoMonedas.dibujar();
         this.monedas.dibujar();
 
-        // if (!this.pausa && entrada == entradas.pulsaciones) {
-        //     this.botonDisparo.dibujar();
-        //     this.botonSalto.dibujar();
-        //     this.pad.dibujar();
-        // }
-
+        for (var i = 0; i < this.iconoVidas.length; i++) {
+            this.iconoVidas[i].dibujar()
+        }
     }
 
 
