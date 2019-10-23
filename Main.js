@@ -1,5 +1,14 @@
-// Canvas y contexto del Canvas
-var canvas = document.getElementById("canvas");
+// To create your canvas object.
+var canvas = NewCanvas(GetId("canvas"), true);
+
+// If you want to update your canvas size use this:
+window.addEventListener("resize", function() {
+    UpdateCvs(canvas);
+});
+
+// Set it to current width
+UpdateCvs(canvas);
+
 var contexto = canvas.getContext("2d");
 var escaladoMinimo = 1;
 
@@ -38,9 +47,9 @@ function loop() {
     }
 }
 
-function actualizarPulsaciones () {
-    for(var i=0; i < pulsaciones.length; i++){
-        if ( pulsaciones[i].tipo ==  tipoPulsacion.inicio){
+function actualizarPulsaciones() {
+    for (var i = 0; i < pulsaciones.length; i++) {
+        if (pulsaciones[i].tipo == tipoPulsacion.inicio) {
             pulsaciones[i].tipo = tipoPulsacion.mantener;
         }
     }
@@ -51,18 +60,62 @@ function actualizarPulsaciones () {
 window.requestAnimationFrame(loop);
 contexto.fillRect(0, 0, canvas.width, canvas.height);
 
-window.addEventListener('load', resize, false);
-
-function resize() {
-    console.log("Resize")
-    var escaladoAncho = parseFloat(window.innerWidth / canvas.width);
-    var escaladoAlto = parseFloat(window.innerHeight / canvas.height);
-
-    escaladoMinimo = Math.min(escaladoAncho, escaladoAlto);
-
-    canvas.width = canvas.width*escaladoMinimo;
-    canvas.height = canvas.height*escaladoMinimo;
-
-    contexto.scale(escaladoMinimo,escaladoMinimo);
+/**
+ * @author TessavWalstijn. GitHub: https://github.com/TessavWalstijn
+ * Sets the canvas properties.
+ * @param {object} Cvs Give the html canvas Id.
+ * @param {boolean} Fullscreen Change the canvas fullscreen default false.
+ * @param {string} Dimension Change the canvas dimension default "2d".
+ * @return {object}
+ */
+function NewCanvas(cvs, fullscreen, dimension) {
+    if (!dimension) dimension = "2d";
+    var ctx = cvs.getContext(dimension);
+    if (fullscreen) {
+        cvs.style.position = "fixed";
+        cvs.style.left = cvs.x = 0;
+        cvs.style.top = cvs.y = 0;
+    } else {
+        var rect = cvs.getBoundingClientRect();
+        cvs.x = rect.left;
+        cvs.y = rect.top;
+    }
+    cvs.ctx = ctx;
+    cvs.dimension = dimension;
+    cvs.fullscreen = fullscreen;
+    return cvs;
 }
 
+/**
+ * @author TessavWalstijn. GitHub: https://github.com/TessavWalstijn
+ * Updates the canvas width and hight.
+ * @param {object} Cvs NewCanvas() object.
+ * @param {boolean} Clear Change the canvas clear default true.
+ */
+function UpdateCvs(cvs, clear = true) {
+    if (cvs.fullscreen) {
+        //if the width is not the same resize the canvas width
+        if (window.innerWidth != cvs.width) {
+            cvs.width = window.innerWidth;
+        }
+        //if the height is not the same resize the canvas height
+        if (window.innerHeight != cvs.height) {
+            cvs.height = window.innerHeight;
+        }
+    } else {
+        let rect = cvs.getBoundingClientRect();
+        cvs.x = rect.left;
+        cvs.y = rect.top;
+    }
+    if (cvs.dimension == "2d")
+        if (clear)
+            cvs.ctx.fillRect(0, 0, cvs.width, cvs.height);
+}
+
+/**
+ * @author TessavWalstijn. GitHub: https://github.com/TessavWalstijn
+ * get html element by id.
+ * @param {string} id give the html element id.
+ * @return {object} document.getElementById(id);
+ */
+function GetId(id) { return document.getElementById(id) }

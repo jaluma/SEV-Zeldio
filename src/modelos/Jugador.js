@@ -21,11 +21,11 @@ class Jugador extends Modelo {
         this.aCorriendoAbajo = new Animacion(imagenes.jugador_corriendo_abajo,
             this.ancho, this.alto, 6, 8);
 
-        this.aAtacarDerecha = new Animacion(imagenes.jugador_disparando_derecha,
-            this.ancho, this.alto, 6, 4, this.finAnimacionAtacar.bind(this));
+        // this.aAtacarDerecha = new Animacion(imagenes.jugador_disparando_derecha,
+        //     this.ancho, this.alto, 6, 4, this.finAnimacionAtacar.bind(this));
 
-        this.aAtacarIzquierda = new Animacion(imagenes.jugador_disparando_izquierda,
-            this.ancho, this.alto, 6, 4, this.finAnimacionAtacar.bind(this));
+        // this.aAtacarIzquierda = new Animacion(imagenes.jugador_disparando_izquierda,
+        //     this.ancho, this.alto, 6, 4, this.finAnimacionAtacar.bind(this));
 
         this.animacion = this.aIdle;
     }
