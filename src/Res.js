@@ -29,6 +29,15 @@ var imagenes = {
     mensaje_como_jugar: "res/mensaje_como_jugar.png",
     mensaje_ganar: "res/mensaje_ganar.png",
     mensaje_perder: "res/mensaje_perder.png",
+    cesped_si: "res/bloques/cesped_si.png",
+    cesped_sc: "res/bloques/cesped_sc.png",
+    cesped_sd: "res/bloques/cesped_sd.png",
+    cesped_ci: "res/bloques/cesped_ci.png",
+    cesped_cc: "res/bloques/cesped_cc.png",
+    cesped_cd: "res/bloques/cesped_cd.png",
+    cesped_ii: "res/bloques/cesped_ii.png",
+    cesped_ic: "res/bloques/cesped_ic.png",
+    cesped_id: "res/bloques/cesped_id.png",
 };
 
 var rutasImagenes = Object.values(imagenes);

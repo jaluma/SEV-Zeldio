@@ -6,11 +6,11 @@ class Texto {
         this.y = y;
     }
 
-    dibujar (){
-        contexto.font = "20px Arial";
+    dibujar() {
+        contexto.font = "40px Arial";
         contexto.fillStyle = "white";
         contexto.textAlign = "left";
-        contexto.fillText(this.valor,this.x,this.y);
+        contexto.fillText(this.valor, this.x, this.y);
     }
 
 }

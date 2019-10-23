@@ -3,6 +3,10 @@ var canvas = document.getElementById("canvas");
 var contexto = canvas.getContext("2d");
 var escaladoMinimo = 1;
 
+var resolution = new Object();
+resolution.width = canvas.width;
+resolution.height = canvas.height;
+
 // Controles
 var controles = {};
 
@@ -21,10 +25,7 @@ function iniciarJuego() {
     setInterval(loop, 1000 / 30);
 }
 
-
-
-function loop(){
-    console.log("loop - ")
+function loop() {
     layer.actualizar();
     if (entrada == entradas.pulsaciones) {
         layer.calcularPulsaciones(pulsaciones);
@@ -35,28 +36,24 @@ function loop(){
     actualizarPulsaciones();
 }
 
-function actualizarPulsaciones () {
-    for(var i=0; i < pulsaciones.length; i++){
-        if ( pulsaciones[i].tipo ==  tipoPulsacion.inicio){
+function updateCanvas() {
+    container = document.getElementById("container");
+    if (container.width != window.innerWidth) {
+        container.style.width = window.innerWidth - 250;
+    }
+    if (container.height != window.innerHeight) {
+        container.style.height = window.innerHeight;
+    }
+}
+
+function actualizarPulsaciones() {
+    for (var i = 0; i < pulsaciones.length; i++) {
+        if (pulsaciones[i].tipo == tipoPulsacion.inicio) {
             pulsaciones[i].tipo = tipoPulsacion.mantener;
         }
     }
 }
 
-
-
-// Cambio de escalado
-window.addEventListener('load', resize, false);
-
-function resize() {
-    console.log("Resize")
-    var escaladoAncho = parseFloat(window.innerWidth / canvas.width);
-    var escaladoAlto = parseFloat(window.innerHeight / canvas.height);
-
-    escaladoMinimo = Math.min(escaladoAncho, escaladoAlto);
-
-    canvas.width = canvas.width*escaladoMinimo;
-    canvas.height = canvas.height*escaladoMinimo;
-
-    contexto.scale(escaladoMinimo,escaladoMinimo);
-}
+window.requestAnimationFrame(loop);
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+makeTileCover(ctx, mousex, mousey);

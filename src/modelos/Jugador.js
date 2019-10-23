@@ -50,10 +50,10 @@ class Jugador extends Modelo {
         switch (this.estado) {
             case estados.atacando:
                 if (this.orientacion == orientaciones.derecha) {
-                    this.animacion = this.aDispararDerecha;
+                    this.animacion = this.aAtacarDerecha;
                 }
                 if (this.orientacion == orientaciones.izquierda) {
-                    this.animacion = this.aDispararIzquierda;
+                    this.animacion = this.aAtacarIzquierda;
                 }
                 break;
             case estados.moviendo:

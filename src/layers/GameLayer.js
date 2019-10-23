@@ -3,32 +3,27 @@ class GameLayer extends Layer {
     constructor() {
         super();
 
-        this.resolution = new Object();
-        this.resolution.width = 480;
-        this.resolution.height = 320;
-
         this.iniciar();
     }
 
     iniciar() {
         this.espacio = new Espacio(0);
 
-        this.botonSalto = new Boton(imagenes.boton_salto, this.resolution.width * 0.9, this.resolution.height * 0.55);
-        this.botonDisparo = new Boton(imagenes.boton_disparo, this.resolution.width * 0.75, this.resolution.height * 0.83);
-        this.pad = new Pad(this.resolution.width * 0.14, this.resolution.height * 0.8);
+        this.botonSalto = new Boton(imagenes.boton_salto, resolution.width * 0.9, resolution.height * 0.55);
+        this.botonDisparo = new Boton(imagenes.boton_disparo, resolution.width * 0.75, resolution.height * 0.83);
+        this.pad = new Pad(resolution.width * 0.14, resolution.height * 0.8);
 
         this.scrollX = 0;
         this.bloques = [];
 
-        this.fondo = new Fondo(imagenes.fondo_2, this.resolution.width * 0.5, this.resolution.height * 0.5);
+        this.fondo = new Fondo(imagenes.fondo_2, resolution.width * 0.5, resolution.height * 0.5);
 
         this.enemigos = [];
 
-
         this.fondoPuntos =
-            new Fondo(imagenes.icono_puntos, this.resolution.width * 0.85, this.resolution.height * 0.05);
+            new Fondo(imagenes.icono_puntos, resolution.width * 0.85, resolution.height * 0.05);
 
-        this.puntos = new Texto(0, this.resolution.width * 0.9, this.resolution.height * 0.07);
+        this.puntos = new Texto(0, resolution.width * 0.9, resolution.height * 0.07);
         this.cargarMapa("res/" + nivelActual + ".txt");
     }
 
@@ -63,8 +58,8 @@ class GameLayer extends Layer {
     }
 
     calcularScroll() {
-        this.scrollX = this.jugador.x - this.resolution.width / 2;
-        this.scrollY = this.jugador.y - this.resolution.height / 2;
+        this.scrollX = this.jugador.x - resolution.width / 2;
+        this.scrollY = this.jugador.y - resolution.height / 2;
     }
 
 
@@ -124,7 +119,6 @@ class GameLayer extends Layer {
 
     }
 
-
     cargarMapa(ruta) {
         var fichero = new XMLHttpRequest();
         fichero.open("GET", ruta, false);
@@ -132,15 +126,15 @@ class GameLayer extends Layer {
         fichero.onreadystatechange = function() {
             var texto = fichero.responseText;
             var lineas = texto.split('\n');
-            this.anchoMapa = (lineas[0].length - 1) * 40;
-            this.altoMapa = (lineas.length - 1) * 40;
+            this.anchoMapa = (lineas[0].length - 1) * 64;
+            this.altoMapa = (lineas.length - 1) * 64;
             for (var i = 0; i < lineas.length; i++) {
                 var linea = lineas[i].split(' ');
 
                 for (var j = 0; j < linea.length; j++) {
                     var simbolo = linea[j];
-                    var x = 40 / 2 + j * 40; // x central
-                    var y = 32 + i * 32; // y de abajo
+                    var x = 64 / 2 + j * 64; // x central
+                    var y = 64 + i * 64; // y de abajo
                     this.cargarObjetoMapa(simbolo, x, y);
                 }
             }
@@ -166,21 +160,53 @@ class GameLayer extends Layer {
                 this.enemigos.push(enemigo);
                 this.espacio.agregarCuerpoDinamico(enemigo);
                 break;
-            case "1":
+            case "Pl_1":
                 this.jugador = new Jugador(x, y);
                 // modificación para empezar a contar desde el suelo
                 this.jugador.y = this.jugador.y - this.jugador.alto / 2;
                 this.espacio.agregarCuerpoDinamico(this.jugador);
+                break;
         }
 
         // añadimos los bloques
         switch (simbolo) {
-            default: var bloque = new Bloque(imagenes["cesped_basico_" + parseInt(Math.random() * lengthCesped)], x, y);
-            bloque.y = bloque.y - bloque.alto / 2;
-            // modificación para empezar a contar desde el suelo
-            this.bloques.push(bloque);
-            break;
+            case "C_si":
+                this.añadirBloque(imagenes.cesped_si, x, y)
+                break;
+            case "C_sc":
+                this.añadirBloque(imagenes.cesped_sc, x, y)
+                break;
+            case "C_sd":
+                this.añadirBloque(imagenes.cesped_sd, x, y)
+                break;
+            case "C_ci":
+                this.añadirBloque(imagenes.cesped_ci, x, y)
+                break;
+            case "C_cc":
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                break;
+            case "C_cd":
+                this.añadirBloque(imagenes.cesped_cd, x, y)
+                break;
+            case "C_ii":
+                this.añadirBloque(imagenes.cesped_ii, x, y)
+                break;
+            case "C_ic":
+                this.añadirBloque(imagenes.cesped_ic, x, y)
+                break;
+            case "C_id":
+                this.añadirBloque(imagenes.cesped_id, x, y)
+                break;
+            default:
+                this.añadirBloque(imagenes.cesped_cc, x, y)
         }
+    }
+
+    añadirBloque(imagen, x, y) {
+        var bloque = new Bloque(imagen, x, y);
+        bloque.y = bloque.y - bloque.alto / 2;
+        // modificación para empezar a contar desde el suelo
+        this.bloques.push(bloque);
     }
 
     calcularPulsaciones(pulsaciones) {
