@@ -5,17 +5,17 @@ class GeneradorEnemigos extends Modelo {
 
         this.animacion = new Animacion(imagenes.teleport_azul_a, this.ancho, this.alto, 6, 3);
 
-        this.delayInt = 100
+        this.delayInt = 200
         this.delay = this.delayInt * 0.2;
 
         this.typesEnemigos = []
-        this.typesEnemigos.push(new RickEnemigo(this.x + this.ancho * 1, this.y))
+        this.typesEnemigos.push(new RickEnemigo(this.x, this.y))
     }
 
     actualizar() {
         this.animacion.actualizar();
 
-        if (gameLayer.enemigos.length < 1) {
+        if (gameLayer.enemigos.length < 5) {
             // generar nuevos enemigos en el gamelayer
             if (this.delay <= 0) {
                 // Generador de enemigos
@@ -39,6 +39,13 @@ class GeneradorEnemigos extends Modelo {
 
     getEnemigo() {
         var random = Math.floor(Math.random() * this.typesEnemigos.length)
-        return this.typesEnemigos[random]
+        var enemigo = this.typesEnemigos[random]
+        enemigo.x = this.x + this.ancho * 1
+        return this.clone(enemigo)
     }
+
+    clone(model) {
+        return Object.assign(Object.create(Object.getPrototypeOf(model)), model);
+    }
+
 }

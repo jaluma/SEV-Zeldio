@@ -73,7 +73,7 @@ class GameLayer extends Layer {
 
         for (var i = 0; i < this.coleccionables.length; i++) {
             if (this.jugador.colisiona(this.coleccionables[i])) {
-                this.coleccionables[i].colosion(this.jugador);
+                this.coleccionables[i].colision(this.jugador);
 
                 this.coleccionables.splice(i, 1);
                 i = i - 1;
