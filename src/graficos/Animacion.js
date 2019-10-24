@@ -3,10 +3,7 @@ class Animacion {
     constructor(imagenSrc, modeloAncho, modeloAlto, velocidadRefresco, framesTotales, callback) {
         // Nuevo para animaciones finitas
         this.callback = callback;
-
-        this.imagen = new Image();
-        this.imagen.src = imagenSrc;
-
+        this.imagen = cache[imagenSrc];
         this.modeloAncho = modeloAncho;
         this.modeloAlto = modeloAlto;
         this.velocidadRefresco = velocidadRefresco;

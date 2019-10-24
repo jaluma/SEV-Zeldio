@@ -1,8 +1,7 @@
 class Modelo {
 
     constructor(imagenRuta, x, y) {
-        this.imagen = new Image();
-        this.imagen.src = imagenRuta;
+        this.imagen = cache[imagenRuta];
         this.x = x;
         this.y = y;
         this.ancho = this.imagen.width;
@@ -10,9 +9,9 @@ class Modelo {
     }
 
     estaEnPantalla() {
-        if ((this.x - gameLayer.scrollX) - this.ancho / 2 <= 480 &&
+        if ((this.x - gameLayer.scrollX) - this.ancho / 2 <= resolution.width &&
             (this.x - gameLayer.scrollX) + this.ancho / 2 >= 0 &&
-            this.y - this.alto / 2 <= 320 &&
+            this.y - this.alto / 2 <= resolution.height &&
             this.y + this.alto / 2 >= 0) {
             return true;
         }

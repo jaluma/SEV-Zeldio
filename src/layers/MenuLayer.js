@@ -6,17 +6,12 @@ class MenuLayer extends Layer {
     }
 
     iniciar() {
-        this.fondo =
-            new Fondo(imagenes.menu_fondo, resolution.width * 0.5, resolution.height * 0.5);
-        this.boton =
-            new Boton(imagenes.boton_jugar, resolution.width * 0.5, resolution.height * 0.7);
-
-        this.texto = new Texto("Pulsa SPACE para empezar...", resolution.width * 0.5, resolution.height * 0.8);
+        this.fondo = new Fondo(imagenes.menu_fondo, resolution.width * 0.5, resolution.height * 0.5);
+        this.texto = new TextoMenu("Pulse SPACE para empezar...", resolution.width * 0.5, resolution.height * 0.7);
     }
 
     dibujar() {
         this.fondo.dibujar();
-        this.boton.dibujar();
         this.texto.dibujar();
     }
 

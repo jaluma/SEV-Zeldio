@@ -14,13 +14,23 @@ class GameLayer extends Layer {
 
         this.fondo = new Fondo(imagenes.fondo_2, resolution.width * 0.5, resolution.height * 0.5);
 
+        this.generadoresEnemigos = []
         this.enemigos = [];
 
-        this.fondoPuntos =
-            new Fondo(imagenes.icono_puntos, resolution.width * 0.85, resolution.height * 0.05);
+        this.coleccionables = []
 
-        this.puntos = new Texto(0, resolution.width * 0.9, resolution.height * 0.07);
+        this.iconoMonedas = new Fondo(imagenes.moneda, resolution.width * 0.85, resolution.height * 0.05);
+        this.monedas = new Texto(0, resolution.width * 0.9, resolution.height * 0.07);
+
         this.cargarMapa("res/" + nivelActual + ".txt");
+
+        // cargar despues del mapa cuando se sepa las vidas del jugador
+        this.iconoVidas = []
+        var initialX = 0.1
+        for (var i = 0; i < this.jugador.vidas; i++) {
+            var x = parseFloat(initialX + i * 0.03).toFixed(2)
+            this.iconoVidas.push(new Fondo(imagenes.icono_vidas, resolution.width * x, resolution.height * 0.05))
+        }
     }
 
     actualizar() {
@@ -40,17 +50,42 @@ class GameLayer extends Layer {
         }
 
         this.jugador.actualizar();
+        for (var i = 0; i < this.generadoresEnemigos.length; i++) {
+            this.generadoresEnemigos[i].actualizar();
+        }
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].actualizar();
+        }
+
+        for (var i = 0; i < this.coleccionables.length; i++) {
+            this.coleccionables[i].actualizar();
         }
 
         // colisiones
         for (var i = 0; i < this.enemigos.length; i++) {
             if (this.jugador.colisiona(this.enemigos[i])) {
-                this.iniciar();
+                this.jugador.perderVida()
+
+                this.enemigos.splice(i, 1);
+                i = i - 1;
             }
         }
 
+        for (var i = 0; i < this.coleccionables.length; i++) {
+            if (this.jugador.colisiona(this.coleccionables[i])) {
+                this.coleccionables[i].colision(this.jugador);
+
+                this.coleccionables.splice(i, 1);
+                i = i - 1;
+            }
+        }
+
+        this.monedas.valor = this.jugador.monedas
+
+        var vidasAEliminar = this.iconoVidas.length - this.jugador.vidas
+        if (vidasAEliminar > 0) {
+            this.iconoVidas.splice(this.iconoVidas.length - vidasAEliminar, vidasAEliminar);
+        }
     }
 
     calcularScroll() {
@@ -68,20 +103,24 @@ class GameLayer extends Layer {
         }
 
         this.jugador.dibujar(this.scrollX, this.scrollY);
+        for (var i = 0; i < this.generadoresEnemigos.length; i++) {
+            this.generadoresEnemigos[i].dibujar(this.scrollX, this.scrollY);
+        }
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].dibujar(this.scrollX, this.scrollY);
         }
 
+        for (var i = 0; i < this.coleccionables.length; i++) {
+            this.coleccionables[i].dibujar(this.scrollX, this.scrollY);
+        }
+
         // HUD
-        this.fondoPuntos.dibujar();
-        this.puntos.dibujar();
+        this.iconoMonedas.dibujar();
+        this.monedas.dibujar();
 
-        // if (!this.pausa && entrada == entradas.pulsaciones) {
-        //     this.botonDisparo.dibujar();
-        //     this.botonSalto.dibujar();
-        //     this.pad.dibujar();
-        // }
-
+        for (var i = 0; i < this.iconoVidas.length; i++) {
+            this.iconoVidas[i].dibujar()
+        }
     }
 
 
@@ -141,34 +180,54 @@ class GameLayer extends Layer {
 
     cargarObjetoMapa(simbolo, x, y) {
         switch (simbolo) {
-            case "C":
-                this.copa = new Bloque(imagenes.copa, x, y);
-                this.copa.y = this.copa.y - this.copa.alto / 2;
-                // modificación para empezar a contar desde el suelo
-                this.espacio.agregarCuerpoDinamico(this.copa);
-                break;
-
-            case "E":
-                var enemigo = new Enemigo(x, y);
-
-                enemigo.y = enemigo.y - enemigo.alto / 2;
-                // modificación para empezar a contar desde el suelo
-                this.enemigos.push(enemigo);
-                this.espacio.agregarCuerpoDinamico(enemigo);
-                this.añadirBloque(imagenes.cesped_cc, x, y)
-                break;
             case "Pl_1":
+                // jugador 1
                 this.jugador = new Jugador(x, y);
                 // modificación para empezar a contar desde el suelo
                 this.jugador.y = this.jugador.y - this.jugador.alto / 2;
                 this.espacio.agregarCuerpoDinamico(this.jugador);
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 break;
+            case "G_En":
+                // Generador de enemigos
+                var generadorEnemigos = new GeneradorEnemigos(imagenes.teleport_azul, x, y)
+                generadorEnemigos.y = generadorEnemigos.y - generadorEnemigos.alto / 2;
+                // modificación para empezar a contar desde el suelo
+                this.generadoresEnemigos.push(generadorEnemigos)
+                this.espacio.agregarCuerpoEstatico(generadorEnemigos);
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                break;
+        }
+
+        // objetos del mapa
+        switch (simbolo) {
+            case this.getCase(simbolo, "ArbP"):
+                // arbol verde
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.treeP, x, y)
+                break;
+            case this.getCase(simbolo, "ArbC"):
+                // arbol rojo
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.treeC, x, y)
+                break;
+            case this.getCase(simbolo, "Mone"):
+                // moneda
+                var moneda = new Moneda(imagenes.moneda, x, y);
+                moneda.y = moneda.y - moneda.alto / 2;
+                this.coleccionables.push(moneda);
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.espacio.agregarCuerpoDinamico(moneda);
+                break;
         }
 
         // añadimos los bloques
+        // cesped
         switch (simbolo) {
-
+            case this.getCase(simbolo, "0000"):
+                //muro invisible
+                this.añadirBloqueEstatico(imagenes.transparente, x, y)
+                break;
             case this.getCase(simbolo, "C_si"):
                 this.añadirBloque(imagenes.cesped_si, x, y)
                 break;
@@ -196,14 +255,10 @@ class GameLayer extends Layer {
             case this.getCase(simbolo, "C_id"):
                 this.añadirBloque(imagenes.cesped_id, x, y)
                 break;
-            case this.getCase(simbolo, "ArbP"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
-                this.añadirBloqueEstatico(imagenes.treeP, x, y)
-                break;
-            case this.getCase(simbolo, "ArbC"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
-                this.añadirBloqueEstatico(imagenes.treeC, x, y)
-                break;
+        }
+
+        // caminos de tierra
+        switch (simbolo) {
             case this.getCase(simbolo, "Ca_s"):
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 this.añadirBloque(imagenes.camino_sup, x, y)
@@ -228,6 +283,10 @@ class GameLayer extends Layer {
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 this.añadirBloque(imagenes.cruce_supizqda, x, y)
                 break;
+        }
+
+        // castillo
+        switch (simbolo) {
             case this.getCase(simbolo, "Cas1"):
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 this.añadirBloqueEstatico(imagenes.cast1, x, y)
@@ -254,8 +313,6 @@ class GameLayer extends Layer {
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 this.añadirBloqueEstatico(imagenes.cast6, x, y)
                 break;
-            default:
-                this.añadirBloque(imagenes.cesped_cc, x, y)
         }
     }
 
@@ -275,6 +332,4 @@ class GameLayer extends Layer {
         this.bloques.push(bloque);
         return bloque
     }
-
-
 }

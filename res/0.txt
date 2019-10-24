@@ -1,17 +1,16 @@
-C_si C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sd
-C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc ArbP C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc ArbC ArbP C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc Cas6 C_cc C_cc C_cc C_cc C_cc C_cc C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc Cas1 Cas2 Cas3 Cas4 Cas5 C_cc C_cc C_cd
-C_ci C_cc ArbP C_cc C_cc Pl_1 C_cc Ca_i C_cc Ca_d C_cc C_cc C_cc C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc C_cc Ca_i C_cc Ca_d C_cc C_cc C_cc C_cd
-C_ci ArbC C_cc C_cc C_cc C_cc C_cc Ca_i C_cc Ca_d C_cc C_cc C_cc C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc C_cc Ca_i C_cc Ca_d C_cc C_cc C_cc C_cd
-C_ci Ca_s Ca_s Ca_s Ca_s Ca_s Ca_s Cr_i C_cc Cr_d Ca_s C_cc C_cc C_cd
-C_ci Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a C_cc ArbP C_cd
-C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc Tree C_cc ArbC C_cc C_cd
-C_ii C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_id
+0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
+0000 C_si C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sd 0000
+0000 C_ci G_En C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc ArbP C_cd 0000
+0000 C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc ArbC ArbP C_cd 0000
+0000 C_ci ArbP C_cc C_cc C_cc Pl_1 C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cd 0000
+0000 C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cd 0000
+0000 C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cd 0000
+0000 C_ci C_cc C_cc C_cc C_cc C_cc C_cc Cas6 C_cc C_cc C_cc C_cc C_cc C_cd 0000
+0000 C_ci C_cc C_cc C_cc C_cc C_cc C_cc Cas1 Cas2 Cas3 Cas4 Cas5 C_cc C_cd 0000
+0000 C_ci ArbC C_cc C_cc C_cc C_cc C_cc C_cc Ca_i C_cc Ca_d C_cc C_cc C_cd 0000
+0000 C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc Ca_i C_cc Ca_d C_cc C_cc C_cd 0000
+0000 C_ci Ca_s Ca_s Ca_s Ca_s Ca_s Ca_s Ca_s Cr_i C_cc Cr_d C_cc C_cc C_cd 0000
+0000 C_ci Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a Ca_a C_cc ArbP C_cd 0000
+0000 C_ci Mone C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc ArbC C_cc C_cd 0000
+0000 C_ii C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_id 0000
+0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
