@@ -1,6 +1,7 @@
 class Modelo {
 
     constructor(imagenRuta, x, y) {
+        this.path = imagenRuta
         this.imagen = cache[imagenRuta];
         this.x = x;
         this.y = y;

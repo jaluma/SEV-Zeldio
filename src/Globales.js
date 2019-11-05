@@ -11,7 +11,7 @@ entradas.gamepad = 3;
 var entrada = entradas.pulsaciones;
 
 
-var nivelActual = 1;
+var nivelActual = 0;
 var nivelMaximo = 2;
 
 
@@ -28,3 +28,8 @@ orientaciones.arriba = 0;
 orientaciones.arriba = 1;
 orientaciones.derecha = 2;
 orientaciones.izquierda = 3;
+
+var estadosTile = {};
+estadosTile.normal = 2;
+estadosTile.rompiendo = 3;
+estadosTile.roto = 4;

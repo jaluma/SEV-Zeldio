@@ -1,9 +1,10 @@
+B_cc
 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
-0000 C_si C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sc C_sd 0000
-0000 C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc ArbP C_cd 0000
-0000 C_ci C_cc Moha C_cc Moha C_cc Moha C_cc Moha C_cc Moha C_cc ArbP C_cd 0000
-0000 C_ci ArbP CofA C_cc CofA C_cc CofA C_cc CofA C_cc CofA C_cc C_cc C_cd 0000
-0000 C_ci C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cc C_cd 0000
-0000 C_ci Mone C_cc C_cc C_cc C_cc C_cc Pl_1 C_cc C_cc C_cc ArbC C_cc C_cd 0000
-0000 C_ii C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_ic C_id 0000
+0000 B_si B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sd 0000
+0000 B_ci B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cd 0000
+0000 B_ci B_cc Moha B_cc Moha B_cc Moha B_cc Moha B_cc Moha B_cc B_cc B_cd 0000
+0000 B_ci B_cc CofA B_cc CofA B_cc CofA B_cc CofA B_cc CofA B_cc B_cc B_cd 0000
+0000 B_ci B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cd 0000
+0000 B_ci B_cc B_cc B_cc B_cc B_cc Pl_1 Ma_H Ma_V B_cc B_cc B_cc B_cc B_cd 0000
+0000 B_ii B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_id 0000
 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000

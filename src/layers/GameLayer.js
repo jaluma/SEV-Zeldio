@@ -64,6 +64,13 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.interactuables.length; i++) {
             this.interactuables[i].actualizar();
         }
+        for (var i = 0; i < this.bloques.length; i++) {
+            if (this.bloques[i].isDestruible()) {
+                if (this.bloques[i].isSaltable() && this.jugador.colisiona(this.bloques[i])) {
+                    this.destruirBloques(i)
+                }
+            }
+        }
 
         // colisiones
         for (var i = 0; i < this.enemigos.length; i++) {
@@ -90,8 +97,9 @@ class GameLayer extends Layer {
                     var object = this.interactuables[i].interactuar(this.modelo)
                     if (typeof object === "string") {
                         this.textos.push(new TextoBocadillo(object))
-                    } else {
-
+                    } else if (object !== null) {
+                        this.textos.push(new TextoBocadillo(object))
+                            // añadir objeto al inventario
                     }
                     break;
                 }
@@ -103,6 +111,28 @@ class GameLayer extends Layer {
         var vidasAEliminar = this.iconoVidas.length - this.jugador.vidas
         if (vidasAEliminar > 0) {
             this.iconoVidas.splice(this.iconoVidas.length - vidasAEliminar, vidasAEliminar);
+        }
+    }
+
+    destruirBloques(i) {
+        if (this.bloques[i].estado == estadosTile.roto) {
+            // creamos un nuevo elemento
+            var bf = new Bloque(this.bloquePorDefecto, this.bloques[i].x, this.bloques[i].y)
+            var b = new Bloque(imagenes.tablon, this.bloques[i].x, this.bloques[i].y)
+            this.bloques.push(bf);
+            this.espacio.agregarCuerpoEstatico(bf)
+            this.bloques.push(b)
+            this.espacio.agregarCuerpoEstatico(b)
+                // eliminamos el anterior
+            this.bloques.splice(i, 1);
+            i = i - 1;
+
+            // mover al jugador
+            this.textos.push(new TextoBocadillo("Ohhh, te has caido!!", 3 * 10))
+            this.jugador.x = this.spawnX
+            this.jugador.y = this.spawnY
+        } else {
+            this.bloques[i].destruir();
         }
     }
 
@@ -193,16 +223,20 @@ class GameLayer extends Layer {
         fichero.onreadystatechange = function() {
             var texto = fichero.responseText;
             var lineas = texto.split('\n');
+
+            this.bloquePorDefecto = this.cargarObjetoMapa(lineas[0], 0, 0).path
+            this.bloques.splice(0, 1)
+
             this.anchoMapa = (lineas[0].length - 1) * 64;
-            this.altoMapa = (lineas.length - 1) * 64;
-            for (var i = 0; i < lineas.length; i++) {
+            this.altoMapa = (lineas.length - 2) * 64;
+            for (var i = 1; i < lineas.length; i++) {
                 var linea = lineas[i].split(' ');
 
                 for (var j = 0; j < linea.length; j++) {
                     var simbolo = linea[j];
                     var x = 64 / 2 + j * 64; // x central
                     var y = 64 + i * 64; // y de abajo
-                    this.cargarObjetoMapa(simbolo, x, y);
+                    this.cargarObjetoMapa(simbolo, x, y, this.bloquePorDefecto);
                 }
             }
         }.bind(this);
@@ -210,7 +244,7 @@ class GameLayer extends Layer {
         fichero.send(null);
     }
 
-    cargarObjetoMapa(simbolo, x, y) {
+    cargarObjetoMapa(simbolo, x, y, bloquePorDefecto = imagenes.cesped_cc) {
         switch (simbolo) {
             case "Pl_1":
                 // jugador 1
@@ -218,7 +252,11 @@ class GameLayer extends Layer {
                 // modificación para empezar a contar desde el suelo
                 this.jugador.y = this.jugador.y - this.jugador.alto / 2;
                 this.espacio.agregarCuerpoDinamico(this.jugador);
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
+
+                // guardamos los puntos de spawn
+                this.spawnX = this.jugador.x
+                this.spawnY = this.jugador.y
                 break;
             case "G_En":
                 // Generador de enemigos
@@ -235,12 +273,12 @@ class GameLayer extends Layer {
         switch (simbolo) {
             case this.getCase(simbolo, "ArbP"):
                 // arbol verde
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloqueEstatico(imagenes.treeP, x, y)
                 break;
             case this.getCase(simbolo, "ArbC"):
                 // arbol rojo
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloqueEstatico(imagenes.treeC, x, y)
                 break;
             case this.getCase(simbolo, "Mone"):
@@ -248,19 +286,19 @@ class GameLayer extends Layer {
                 var moneda = new Moneda(imagenes.moneda, x, y);
                 moneda.y = moneda.y - moneda.alto / 2;
                 this.coleccionables.push(moneda);
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.espacio.agregarCuerpoDinamico(moneda);
                 break;
             case this.getCase(simbolo, "Moha"):
                 // mohai
                 var mohai = new Mohai(x, y);
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirModeloEstatico(mohai)
                 break;
             case this.getCase(simbolo, "CofA"):
                 // cofre
                 var modelo = new Cofre(x, y);
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 modelo.y = modelo.y - modelo.alto / 2;
                 // modificación para empezar a contar desde el suelo
                 this.interactuables.push(modelo);
@@ -276,88 +314,117 @@ class GameLayer extends Layer {
                 this.añadirBloqueEstatico(imagenes.transparente, x, y)
                 break;
             case this.getCase(simbolo, "C_si"):
-                this.añadirBloque(imagenes.cesped_si, x, y)
-                break;
+                return this.añadirBloque(imagenes.cesped_si, x, y)
             case this.getCase(simbolo, "C_sc"):
-                this.añadirBloque(imagenes.cesped_sc, x, y)
-                break;
+                return this.añadirBloque(imagenes.cesped_sc, x, y)
             case this.getCase(simbolo, "C_sd"):
-                this.añadirBloque(imagenes.cesped_sd, x, y)
-                break;
+                return this.añadirBloque(imagenes.cesped_sd, x, y)
             case this.getCase(simbolo, "C_ci"):
-                this.añadirBloque(imagenes.cesped_ci, x, y)
-                break;
+                return this.añadirBloque(imagenes.cesped_ci, x, y)
             case this.getCase(simbolo, "C_cc"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
-                break;
+                return this.añadirBloque(imagenes.cesped_cc, x, y)
             case this.getCase(simbolo, "C_cd"):
-                this.añadirBloque(imagenes.cesped_cd, x, y)
-                break;
+                return this.añadirBloque(imagenes.cesped_cd, x, y)
             case this.getCase(simbolo, "C_ii"):
-                this.añadirBloque(imagenes.cesped_ii, x, y)
-                break;
+                return this.añadirBloque(imagenes.cesped_ii, x, y)
             case this.getCase(simbolo, "C_ic"):
-                this.añadirBloque(imagenes.cesped_ic, x, y)
-                break;
+                return this.añadirBloque(imagenes.cesped_ic, x, y)
             case this.getCase(simbolo, "C_id"):
-                this.añadirBloque(imagenes.cesped_id, x, y)
-                break;
+                return this.añadirBloque(imagenes.cesped_id, x, y)
         }
 
         // caminos de tierra
         switch (simbolo) {
             case this.getCase(simbolo, "Ca_s"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.camino_sup, x, y)
                 break;
             case this.getCase(simbolo, "Ca_a"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.camino_abajo, x, y)
                 break;
             case this.getCase(simbolo, "Ca_i"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.camino_izqda, x, y)
                 break;
             case this.getCase(simbolo, "Ca_d"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.camino_dcha, x, y)
                 break;
             case this.getCase(simbolo, "Cr_d"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.cruce_supdcha, x, y)
                 break;
             case this.getCase(simbolo, "Cr_i"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.cruce_supizqda, x, y)
                 break;
+        }
+
+        // suelo de madera
+        switch (simbolo) {
+            case this.getCase(simbolo, "Ma_H"):
+                var bloque = new TileDestruible(imagenes.madera_h, x, y);
+                bloque.y = bloque.y - bloque.alto / 2;
+                // modificación para empezar a contar desde el suelo
+                this.bloques.push(bloque);
+                return bloque
+            case this.getCase(simbolo, "Ma_V"):
+                var bloque = new TileDestruible(imagenes.madera_v, x, y);
+                bloque.y = bloque.y - bloque.alto / 2;
+                // modificación para empezar a contar desde el suelo
+                this.bloques.push(bloque);
+                return bloque
+        }
+
+        // baldosas
+        switch (simbolo) {
+            case this.getCase(simbolo, "B_si"):
+                return this.añadirBloque(imagenes.baldosa_si, x, y)
+            case this.getCase(simbolo, "B_sc"):
+                return this.añadirBloque(imagenes.baldosa_sc, x, y)
+            case this.getCase(simbolo, "B_sd"):
+                return this.añadirBloque(imagenes.baldosa_sd, x, y)
+            case this.getCase(simbolo, "B_ci"):
+                return this.añadirBloque(imagenes.baldosa_ci, x, y)
+            case this.getCase(simbolo, "B_cc"):
+                return this.añadirBloque(imagenes.baldosa_cc, x, y)
+            case this.getCase(simbolo, "B_cd"):
+                return this.añadirBloque(imagenes.baldosa_cd, x, y)
+            case this.getCase(simbolo, "B_ii"):
+                return this.añadirBloque(imagenes.baldosa_ii, x, y)
+            case this.getCase(simbolo, "B_ic"):
+                return this.añadirBloque(imagenes.baldosa_ic, x, y)
+            case this.getCase(simbolo, "B_id"):
+                return this.añadirBloque(imagenes.baldosa_id, x, y)
         }
 
         // castillo
         switch (simbolo) {
             case this.getCase(simbolo, "Cas1"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloqueEstatico(imagenes.cast1, x, y)
                 break;
             case this.getCase(simbolo, "Cas2"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.camino_izqda, x, y)
                 this.añadirBloqueEstatico(imagenes.cast2, x, y)
                 break;
             case this.getCase(simbolo, "Cas3"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloqueEstatico(imagenes.cast3, x, y)
                 break;
             case this.getCase(simbolo, "Cas4"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.camino_dcha, x, y)
                 this.añadirBloqueEstatico(imagenes.cast4, x, y)
                 break;
             case this.getCase(simbolo, "Cas5"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloqueEstatico(imagenes.cast5, x, y)
                 break;
             case this.getCase(simbolo, "Cas6"):
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloqueEstatico(imagenes.cast6, x, y)
                 break;
         }
@@ -369,7 +436,7 @@ class GameLayer extends Layer {
     }
 
     añadirBloqueEstatico(imagen, x, y) {
-        this.espacio.agregarCuerpoEstatico(this.añadirBloque(imagen, x, y))
+        return this.espacio.agregarCuerpoEstatico(this.añadirBloque(imagen, x, y))
     }
 
     añadirBloque(imagen, x, y) {

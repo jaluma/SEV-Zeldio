@@ -1,7 +1,7 @@
 class TextoBocadillo extends Texto {
-    constructor(message) {
+    constructor(message, delay = 10 * 10) {
         super(message, resolution.width * 0.5, resolution.height * 0.7)
-        this.delay = 10 * 10
+        this.delay = delay
         this.current = 0
     }
 

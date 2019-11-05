@@ -1,15 +1,12 @@
-class Bloque extends Modelo {
+class TileDestruible extends BloqueDestruible {
 
     constructor(rutaImagen, x, y) {
         super(rutaImagen, x, y)
-    }
 
-    isDestruible() {
-        return false;
+        this.destruible = 1
     }
 
     isSaltable() {
-        return false;
+        return true
     }
-
 }

@@ -140,5 +140,4 @@ class Jugador extends Modelo {
     isInteractuar() {
         return this.interactuar
     }
-
 }

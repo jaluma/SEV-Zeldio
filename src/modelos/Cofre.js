@@ -8,6 +8,7 @@ class Cofre extends Modelo {
 
         this.animacion = this.aCofre
         this.objeto = objeto
+        this.abierto = false
     }
 
     actualizar() {
@@ -26,7 +27,11 @@ class Cofre extends Modelo {
 
     interactuar() {
         this.abrir()
-        return this.getObjeto()
+        if (!this.abierto) {
+            this.abierto = !this.abierto
+            return this.getObjeto()
+        }
+        return null
     }
 
     getObjeto() {
