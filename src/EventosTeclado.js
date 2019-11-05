@@ -3,6 +3,7 @@ var oneKey = 49
 var twoKey = 50
 
 var spaceKey = 32
+var eKey = 69
 
 var upKey = 38
 var downKey = 40
@@ -38,6 +39,9 @@ function onKeyDown(event) {
             case leftKey:
                 controles.moverX = -1;
                 break;
+            case eKey:
+                controles.interactuar = true;
+                break;
         }
 
     }
@@ -72,6 +76,9 @@ function onKeyUp(event) {
             if (controles.moverX == -1) {
                 controles.moverX = 0;
             }
+            break;
+        case eKey:
+            controles.interactuar = false
             break;
     }
 

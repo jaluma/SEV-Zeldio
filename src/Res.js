@@ -51,9 +51,10 @@ var imagenes = {
     teleport_azul: "res/enemigos/teleport_1.png",
     teleport_azul_a: "res/enemigos/teleport_azul.png",
     teleport_naranja: "res/enemigos/teleport_4.png",
-    teleport_naranja_a: "res/enemigos/teleport_naranja.png"
-
-
+    teleport_naranja_a: "res/enemigos/teleport_naranja.png",
+    cofre: "res/cofre/1.png",
+    cofre_anim: "res/cofre/cofre.png",
+    mohai: "res/mohai.png"
 };
 
 var rutasImagenes = Object.values(imagenes);

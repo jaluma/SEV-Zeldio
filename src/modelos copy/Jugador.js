@@ -33,8 +33,6 @@ class Jugador extends Modelo {
         this.vidas = 3
 
         this.lastPerdida = Date.now()
-
-        this.interactuar = false
     }
 
     actualizar() {
@@ -120,25 +118,6 @@ class Jugador extends Modelo {
             this.vidas--
                 this.lastPerdida = Date.now()
         }
-    }
-
-    getDirection() {
-        if (this.vx > 0) {
-            return "R"
-        }
-        if (this.vx < 0) {
-            return "L"
-        }
-        if (this.vy < 0) {
-            return "U"
-        }
-        if (this.vy > 0) {
-            return "D"
-        }
-    }
-
-    isInteractuar() {
-        return this.interactuar
     }
 
 }

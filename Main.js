@@ -56,18 +56,9 @@ function actualizarPulsaciones() {
 }
 
 // Cambio de escalado
-
 window.requestAnimationFrame(loop);
 contexto.fillRect(0, 0, canvas.width, canvas.height);
 
-/**
- * @author TessavWalstijn. GitHub: https://github.com/TessavWalstijn
- * Sets the canvas properties.
- * @param {object} Cvs Give the html canvas Id.
- * @param {boolean} Fullscreen Change the canvas fullscreen default false.
- * @param {string} Dimension Change the canvas dimension default "2d".
- * @return {object}
- */
 function NewCanvas(cvs, fullscreen, dimension) {
     if (!dimension) dimension = "2d";
     var ctx = cvs.getContext(dimension);
@@ -86,12 +77,6 @@ function NewCanvas(cvs, fullscreen, dimension) {
     return cvs;
 }
 
-/**
- * @author TessavWalstijn. GitHub: https://github.com/TessavWalstijn
- * Updates the canvas width and hight.
- * @param {object} Cvs NewCanvas() object.
- * @param {boolean} Clear Change the canvas clear default true.
- */
 function UpdateCvs(cvs, clear = true) {
     if (cvs.fullscreen) {
         //if the width is not the same resize the canvas width
@@ -112,10 +97,4 @@ function UpdateCvs(cvs, clear = true) {
             cvs.ctx.fillRect(0, 0, cvs.width, cvs.height);
 }
 
-/**
- * @author TessavWalstijn. GitHub: https://github.com/TessavWalstijn
- * get html element by id.
- * @param {string} id give the html element id.
- * @return {object} document.getElementById(id);
- */
 function GetId(id) { return document.getElementById(id) }

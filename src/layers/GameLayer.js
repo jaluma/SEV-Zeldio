@@ -18,6 +18,8 @@ class GameLayer extends Layer {
         this.enemigos = [];
 
         this.coleccionables = []
+        this.interactuables = []
+        this.textos = []
 
         this.iconoMonedas = new Fondo(imagenes.moneda, resolution.width * 0.85, resolution.height * 0.05);
         this.monedas = new Texto(0, resolution.width * 0.9, resolution.height * 0.07);
@@ -56,9 +58,11 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].actualizar();
         }
-
         for (var i = 0; i < this.coleccionables.length; i++) {
             this.coleccionables[i].actualizar();
+        }
+        for (var i = 0; i < this.interactuables.length; i++) {
+            this.interactuables[i].actualizar();
         }
 
         // colisiones
@@ -77,6 +81,20 @@ class GameLayer extends Layer {
 
                 this.coleccionables.splice(i, 1);
                 i = i - 1;
+            }
+        }
+
+        if (this.jugador.isInteractuar()) {
+            for (var i = 0; i < this.interactuables.length; i++) {
+                if (this.jugador.colisiona(this.interactuables[i])) {
+                    var object = this.interactuables[i].interactuar(this.modelo)
+                    if (typeof object === "string") {
+                        this.textos.push(new TextoBocadillo(object))
+                    } else {
+
+                    }
+                    break;
+                }
             }
         }
 
@@ -114,12 +132,20 @@ class GameLayer extends Layer {
             this.coleccionables[i].dibujar(this.scrollX, this.scrollY);
         }
 
+        for (var i = 0; i < this.interactuables.length; i++) {
+            this.interactuables[i].dibujar(this.scrollX, this.scrollY);
+        }
+
         // HUD
         this.iconoMonedas.dibujar();
         this.monedas.dibujar();
 
         for (var i = 0; i < this.iconoVidas.length; i++) {
             this.iconoVidas[i].dibujar()
+        }
+
+        for (var i = 0; i < this.textos.length; i++) {
+            this.textos[i].dibujar(this.scrollX, this.scrollY);
         }
     }
 
@@ -132,6 +158,12 @@ class GameLayer extends Layer {
                 this.espacio.agregarCuerpoDinamico(nuevoAtaque);
                 // hacer algo con el ataque
             }
+        }
+
+        if (controles.interactuar) {
+            this.jugador.interactuar = true
+        } else {
+            this.jugador.interactuar = false
         }
 
         // Eje X
@@ -218,6 +250,21 @@ class GameLayer extends Layer {
                 this.coleccionables.push(moneda);
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 this.espacio.agregarCuerpoDinamico(moneda);
+                break;
+            case this.getCase(simbolo, "Moha"):
+                // mohai
+                var mohai = new Mohai(x, y);
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirModeloEstatico(mohai)
+                break;
+            case this.getCase(simbolo, "CofA"):
+                // cofre
+                var modelo = new Cofre(x, y);
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                modelo.y = modelo.y - modelo.alto / 2;
+                // modificación para empezar a contar desde el suelo
+                this.interactuables.push(modelo);
+                this.espacio.agregarCuerpoEstatico(modelo)
                 break;
         }
 
@@ -331,5 +378,13 @@ class GameLayer extends Layer {
         // modificación para empezar a contar desde el suelo
         this.bloques.push(bloque);
         return bloque
+    }
+
+    añadirModeloEstatico(modelo) {
+        modelo.y = modelo.y - modelo.alto / 2;
+        // modificación para empezar a contar desde el suelo
+        this.bloques.push(modelo);
+        this.espacio.agregarCuerpoEstatico(modelo)
+        return modelo
     }
 }

@@ -1,6 +1,6 @@
 class Animacion {
 
-    constructor(imagenSrc, modeloAncho, modeloAlto, velocidadRefresco, framesTotales, callback) {
+    constructor(imagenSrc, modeloAncho, modeloAlto, velocidadRefresco, framesTotales, loop, callback) {
         // Nuevo para animaciones finitas
         this.callback = callback;
         this.imagen = cache[imagenSrc];
@@ -20,6 +20,7 @@ class Animacion {
         this.rectanguloDibujo.alto = this.frameAlto;
 
         this.ultimaActualizacion = 0;
+        this.loop = typeof loop !== 'undefined' ? loop : true
     }
 
     actualizar() {
@@ -27,21 +28,23 @@ class Animacion {
 
         if (this.ultimaActualizacion > this.velocidadRefresco) {
             this.ultimaActualizacion = 0;
-            // actualizar el frame
-            this.frameActual++;
-            // Si llega al último frame evuelve al primero
-            if (this.frameActual >= this.framesTotales) {
-                // reiniciar, es infinita
-                if (this.callback != null) {
-                    // avisar de que acabo
-                    this.frameActual = 0;
-                    this.callback();
-                } else {
-                    // reiniciar, es infinita
-                    this.frameActual = 0;
+            this.frameActual++
+                // Si llega al último frame evuelve al primero
+                if (this.frameActual > this.framesTotales - 1) {
+                    if (!this.loop) {
+                        this.frameActual--
+                    } else {
+                        // reiniciar, es infinita
+                        if (this.callback != null) {
+                            // avisar de que acabo
+                            this.frameActual = 0;
+                            this.callback();
+                        } else {
+                            // reiniciar, es infinita
+                            this.frameActual = 0;
+                        }
+                    }
                 }
-
-            }
         }
         // actualizar el rectangulo (siguiente frame)
         this.rectanguloDibujo.x = this.frameActual * this.frameAncho;
