@@ -11,7 +11,7 @@ entradas.gamepad = 3;
 var entrada = entradas.pulsaciones;
 
 
-var nivelActual = 0;
+var nivelActual = 2;
 var nivelMaximo = 2;
 
 

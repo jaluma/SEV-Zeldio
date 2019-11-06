@@ -7,6 +7,7 @@ class Modelo {
         this.y = y;
         this.ancho = this.imagen.width;
         this.alto = this.imagen.height;
+        this.rango = 2
     }
 
     estaEnPantalla() {
@@ -30,15 +31,16 @@ class Modelo {
     colisiona(modelo) {
         var colisiona = false;
 
-        if (modelo.x - modelo.ancho / 2 <= this.x + this.ancho / 2 &&
-            modelo.x + modelo.ancho / 2 >= this.x - this.ancho / 2 &&
-            this.y + this.alto / 2 >= modelo.y - modelo.alto / 2 &&
-            this.y - this.alto / 2 <= modelo.y + modelo.alto / 2) {
+        if (modelo.x - modelo.ancho / this.rango <= this.x + this.ancho / this.rango &&
+            modelo.x + modelo.ancho / this.rango >= this.x - this.ancho / this.rango &&
+            this.y + this.alto / this.rango >= modelo.y - modelo.alto / this.rango &&
+            this.y - this.alto / this.rango <= modelo.y + modelo.alto / this.rango) {
 
             colisiona = true;
 
         }
         return colisiona;
     }
+
 
 }

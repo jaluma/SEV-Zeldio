@@ -30,10 +30,11 @@ class Jugador extends Modelo {
         this.animacion = this.aIdle;
 
         this.monedas = 0
-        this.vidas = 3
 
+        this.vidas = 3
         this.lastPerdida = Date.now()
 
+        this.inventario = []
         this.interactuar = false
     }
 

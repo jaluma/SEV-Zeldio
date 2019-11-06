@@ -42,6 +42,15 @@ var imagenes = {
     baldosa_ii: "res/bloques/baldosa/baldosa_ii.png",
     baldosa_ic: "res/bloques/baldosa/baldosa_ic.png",
     baldosa_id: "res/bloques/baldosa/baldosa_id.png",
+    cemento_si: "res/bloques/cemento/cemento_si.png",
+    cemento_sc: "res/bloques/cemento/cemento_sc.png",
+    cemento_sd: "res/bloques/cemento/cemento_sd.png",
+    cemento_ci: "res/bloques/cemento/cemento_ci.png",
+    cemento_cc: "res/bloques/cemento/cemento_cc.png",
+    cemento_cd: "res/bloques/cemento/cemento_cd.png",
+    cemento_ii: "res/bloques/cemento/cemento_ii.png",
+    cemento_ic: "res/bloques/cemento/cemento_ic.png",
+    cemento_id: "res/bloques/cemento/cemento_id.png",
     madera_h: "res/bloques/madera/madera1.png",
     madera_v: "res/bloques/madera/madera2.png",
     tablon: "res/bloques/madera/tablon.png",
@@ -66,7 +75,12 @@ var imagenes = {
     teleport_naranja_a: "res/enemigos/teleport_naranja.png",
     cofre: "res/cofre/1.png",
     cofre_anim: "res/cofre/cofre.png",
-    mohai: "res/mohai.png"
+    mohai: "res/mohai.png",
+    pedestal: "res/pedestal.png",
+    llave: "res/llave.png",
+    placa: "res/bloques/cemento/placa.png",
+    placa_activada: "res/bloques/cemento/placa_activada.png"
+
 };
 
 var rutasImagenes = Object.values(imagenes);

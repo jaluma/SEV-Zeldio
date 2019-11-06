@@ -19,7 +19,9 @@ class GameLayer extends Layer {
 
         this.coleccionables = []
         this.interactuables = []
-        this.textos = []
+        this.texto = null
+
+        this.inventario = new Inventario(resolution.width * 0.1, resolution.height * 0.90)
 
         this.iconoMonedas = new Fondo(imagenes.moneda, resolution.width * 0.85, resolution.height * 0.05);
         this.monedas = new Texto(0, resolution.width * 0.9, resolution.height * 0.07);
@@ -33,6 +35,46 @@ class GameLayer extends Layer {
             var x = parseFloat(initialX + i * 0.03).toFixed(2)
             this.iconoVidas.push(new Fondo(imagenes.icono_vidas, resolution.width * x, resolution.height * 0.05))
         }
+
+        // iniciamos el nivel (mecanicas)
+        switch (nivelActual) {
+            case 0:
+                break;
+            case 1:
+                this.colocarObjeto(Cofre)
+                break;
+            case 2:
+                this.generarOrden(Placa)
+                this.orden = 0
+                break;
+        }
+    }
+
+    colocarObjeto(prototype) {
+        var list = this.interactuables.filter(i => i instanceof prototype)
+        var index = Math.floor(Math.random() * (list.length))
+
+        list[index].objeto = new Llave()
+    }
+
+    generarOrden(prototype) {
+        var array = this.shuffle(Array.from({ length: this.interactuables.filter(i => i instanceof prototype).length }, (_, id) => ({ id })))
+        var count = 0;
+        for (var i = 0; i < this.interactuables.length; i++) {
+            if (this.interactuables[i] instanceof prototype) {
+                this.interactuables[i].orden = array[count++].id
+            }
+        }
+    }
+
+    shuffle(array) {
+        for (var i = array.length; i > 1; i--) {
+            var r = Math.floor(Math.random() * i);
+            var temp = array[r];
+            array[r] = array[i - 1];
+            array[i - 1] = temp;
+        }
+        return array
     }
 
     actualizar() {
@@ -91,15 +133,18 @@ class GameLayer extends Layer {
             }
         }
 
-        if (this.jugador.isInteractuar()) {
-            for (var i = 0; i < this.interactuables.length; i++) {
-                if (this.jugador.colisiona(this.interactuables[i])) {
+        for (var i = 0; i < this.interactuables.length; i++) {
+            if (this.interactuables[i].colisiona(this.jugador)) {
+                if (this.jugador.isInteractuar() || !this.interactuables[i].activarConBoton) {
                     var object = this.interactuables[i].interactuar(this.modelo)
                     if (typeof object === "string") {
-                        this.textos.push(new TextoBocadillo(object))
+                        this.texto = new TextoBocadillo(object)
                     } else if (object !== null) {
-                        this.textos.push(new TextoBocadillo(object))
-                            // añadir objeto al inventario
+                        if (object instanceof Llave) {
+                            this.texto = new TextoBocadillo(object.texto)
+                            this.inventario.añadir(object)
+                            this.jugador.inventario.push(object)
+                        }
                     }
                     break;
                 }
@@ -128,7 +173,7 @@ class GameLayer extends Layer {
             i = i - 1;
 
             // mover al jugador
-            this.textos.push(new TextoBocadillo("Ohhh, te has caido!!", 3 * 10))
+            this.texto = new TextoBocadillo("Ohhh, te has caido!!", 3 * 10)
             this.jugador.x = this.spawnX
             this.jugador.y = this.spawnY
         } else {
@@ -150,18 +195,15 @@ class GameLayer extends Layer {
             this.bloques[i].dibujar(this.scrollX, this.scrollY);
         }
 
-        this.jugador.dibujar(this.scrollX, this.scrollY);
         for (var i = 0; i < this.generadoresEnemigos.length; i++) {
             this.generadoresEnemigos[i].dibujar(this.scrollX, this.scrollY);
         }
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].dibujar(this.scrollX, this.scrollY);
         }
-
         for (var i = 0; i < this.coleccionables.length; i++) {
             this.coleccionables[i].dibujar(this.scrollX, this.scrollY);
         }
-
         for (var i = 0; i < this.interactuables.length; i++) {
             this.interactuables[i].dibujar(this.scrollX, this.scrollY);
         }
@@ -173,10 +215,12 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.iconoVidas.length; i++) {
             this.iconoVidas[i].dibujar()
         }
-
-        for (var i = 0; i < this.textos.length; i++) {
-            this.textos[i].dibujar(this.scrollX, this.scrollY);
+        if (this.texto !== null) {
+            this.texto.dibujar(this.scrollX, this.scrollY);
         }
+        this.inventario.dibujar()
+
+        this.jugador.dibujar(this.scrollX, this.scrollY);
     }
 
 
@@ -289,11 +333,12 @@ class GameLayer extends Layer {
                 this.añadirBloque(bloquePorDefecto, x, y)
                 this.espacio.agregarCuerpoDinamico(moneda);
                 break;
-            case this.getCase(simbolo, "Moha"):
-                // mohai
-                var mohai = new Mohai(x, y);
+            case this.getCase(simbolo, "Moai"):
+                // moai
+                var moai = new Moai(x, y);
                 this.añadirBloque(bloquePorDefecto, x, y)
-                this.añadirModeloEstatico(mohai)
+                this.añadirBloque(imagenes.pedestal, x, y)
+                this.añadirModeloEstatico(moai)
                 break;
             case this.getCase(simbolo, "CofA"):
                 // cofre
@@ -303,6 +348,14 @@ class GameLayer extends Layer {
                 // modificación para empezar a contar desde el suelo
                 this.interactuables.push(modelo);
                 this.espacio.agregarCuerpoEstatico(modelo)
+                break;
+            case this.getCase(simbolo, "Plac"):
+                // placa
+                var modelo = new Placa(x, y);
+                this.añadirBloque(bloquePorDefecto, x, y)
+                modelo.y = modelo.y - modelo.alto / 2;
+                // modificación para empezar a contar desde el suelo
+                this.interactuables.push(modelo);
                 break;
         }
 
@@ -397,6 +450,28 @@ class GameLayer extends Layer {
                 return this.añadirBloque(imagenes.baldosa_ic, x, y)
             case this.getCase(simbolo, "B_id"):
                 return this.añadirBloque(imagenes.baldosa_id, x, y)
+        }
+
+        // cemento
+        switch (simbolo) {
+            case this.getCase(simbolo, "M_si"):
+                return this.añadirBloque(imagenes.cemento_si, x, y)
+            case this.getCase(simbolo, "M_sc"):
+                return this.añadirBloque(imagenes.cemento_sc, x, y)
+            case this.getCase(simbolo, "M_sd"):
+                return this.añadirBloque(imagenes.cemento_sd, x, y)
+            case this.getCase(simbolo, "M_ci"):
+                return this.añadirBloque(imagenes.cemento_ci, x, y)
+            case this.getCase(simbolo, "M_cc"):
+                return this.añadirBloque(imagenes.cemento_cc, x, y)
+            case this.getCase(simbolo, "M_cd"):
+                return this.añadirBloque(imagenes.cemento_cd, x, y)
+            case this.getCase(simbolo, "M_ii"):
+                return this.añadirBloque(imagenes.cemento_ii, x, y)
+            case this.getCase(simbolo, "M_ic"):
+                return this.añadirBloque(imagenes.cemento_ic, x, y)
+            case this.getCase(simbolo, "M_id"):
+                return this.añadirBloque(imagenes.cemento_id, x, y)
         }
 
         // castillo

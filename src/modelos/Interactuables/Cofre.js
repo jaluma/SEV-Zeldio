@@ -1,13 +1,12 @@
-class Cofre extends Modelo {
+class Cofre extends BaseInteractuable {
 
     constructor(x, y, objeto = null) {
-        super(imagenes.cofre, x, y)
+        super(imagenes.cofre, x, y, objeto)
 
         this.aCofre = new Animacion(imagenes.cofre, this.ancho, this.alto, 1, 1, true);
         this.aAbrirCofre = new Animacion(imagenes.cofre_anim, this.ancho, this.alto, 5, 4, false);
 
         this.animacion = this.aCofre
-        this.objeto = objeto
         this.abierto = false
     }
 
@@ -29,6 +28,10 @@ class Cofre extends Modelo {
         this.abrir()
         if (!this.abierto) {
             this.abierto = !this.abierto
+                // if (this.objeto !== null) {
+                //     this.objeto.x -= scrollX
+                //     this.objeto.y -= scrollY
+                // }
             return this.getObjeto()
         }
         return null
