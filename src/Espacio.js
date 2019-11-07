@@ -186,7 +186,9 @@ class Espacio {
     }
 
     agregarCuerpoEstatico(modelo) {
-        this.estaticos.push(modelo);
+        if (!this.estaticos.includes(modelo)) {
+            this.estaticos.push(modelo);
+        }
     }
 
     eliminarCuerpoDinamico(modelo) {

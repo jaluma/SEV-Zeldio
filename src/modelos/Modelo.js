@@ -41,6 +41,4 @@ class Modelo {
         }
         return colisiona;
     }
-
-
 }

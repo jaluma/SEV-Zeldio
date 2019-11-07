@@ -16,6 +16,7 @@ class GameLayer extends Layer {
 
         this.generadoresEnemigos = []
         this.enemigos = [];
+        this.npcs = []
 
         this.coleccionables = []
         this.interactuables = []
@@ -99,6 +100,20 @@ class GameLayer extends Layer {
         }
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].actualizar();
+        }
+        for (var i = 0; i < this.npcs.length; i++) {
+            this.npcs[i].actualizar();
+            if (this.npcs[i].colisiona(this.jugador)) {
+                if (this.jugador.isInteractuar()) {
+                    var object = this.npcs[i].interactuar()
+                    break;
+                }
+            }
+            if (this.npcs[i].isMovimiendo()) {
+                this.espacio.eliminarCuerpoEstatico(this.npcs[i])
+            } else {
+                this.espacio.agregarCuerpoEstatico(this.npcs[i])
+            }
         }
         for (var i = 0; i < this.coleccionables.length; i++) {
             this.coleccionables[i].actualizar();
@@ -200,6 +215,9 @@ class GameLayer extends Layer {
         }
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].dibujar(this.scrollX, this.scrollY);
+        }
+        for (var i = 0; i < this.npcs.length; i++) {
+            this.npcs[i].dibujar(this.scrollX, this.scrollY);
         }
         for (var i = 0; i < this.coleccionables.length; i++) {
             this.coleccionables[i].dibujar(this.scrollX, this.scrollY);
@@ -307,6 +325,25 @@ class GameLayer extends Layer {
                 var generadorEnemigos = new GeneradorEnemigos(imagenes.teleport_azul, x, y)
                 generadorEnemigos.y = generadorEnemigos.y - generadorEnemigos.alto / 2;
                 // modificación para empezar a contar desde el suelo
+                this.generadoresEnemigos.push(generadorEnemigos)
+                this.espacio.agregarCuerpoEstatico(generadorEnemigos);
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                break;
+        }
+
+        switch (simbolo) {
+            case "Falo":
+                var npc = new Falo(x, y)
+                npc.y = npc.y - npc.alto / 2;
+                this.npcs.push(npc);
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.espacio.agregarCuerpoDinamico(npc);
+                this.espacio.agregarCuerpoEstatico(npc);
+                break;
+            case "Mari":
+                // Generador de enemigos
+                var generadorEnemigos = new GeneradorEnemigos(imagenes.teleport_azul, x, y)
+                generadorEnemigos.y = generadorEnemigos.y - generadorEnemigos.alto / 2;
                 this.generadoresEnemigos.push(generadorEnemigos)
                 this.espacio.agregarCuerpoEstatico(generadorEnemigos);
                 this.añadirBloque(imagenes.cesped_cc, x, y)
