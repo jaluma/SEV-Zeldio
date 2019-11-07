@@ -81,6 +81,18 @@ class GameLayer extends Layer {
     actualizar() {
         this.espacio.actualizar();
 
+        for (var i = 0; i < this.matrizCaminos.length; i++) {
+            for (var j = 0; j < this.matrizCaminos[i].length; j++) {
+                if (this.matrizCaminos[i][j] === estadosMC.jugador) {
+                    this.matrizCaminos[i][j] = estadosMC.vacio
+                }
+                if (this.matrizCaminos[i][j] === estadosMC.npc) {
+                    this.matrizCaminos[i][j] = estadosMC.vacio
+                }
+            }
+        }
+        this.marcar(this.jugador, estadosMC.jugador)
+
         // elementos fuera
         // Enemigos muertos fuera del juego
         for (var j = 0; j < this.enemigos.length; j++) {
@@ -289,9 +301,15 @@ class GameLayer extends Layer {
             this.bloquePorDefecto = this.cargarObjetoMapa(lineas[0], 0, 0).path
             this.bloques.splice(0, 1)
 
-            this.anchoMapa = (lineas[0].length - 1) * 64;
-            this.altoMapa = (lineas.length - 2) * 64;
-            for (var i = 1; i < lineas.length; i++) {
+            lineas.splice(0, 1)
+
+            this.anchoMapa = (lineas[0].split(' ').length) * 64; // restamos uno de mas porq la primera no cuenta
+            this.altoMapa = (lineas.length) * 64;
+
+            // inicializmaos la matriz a 0
+            this.matrizCaminos = Array.from(Array(this.altoMapa / 64), () => Array.from(Array(this.anchoMapa / 64), () => estadosMC.vacio))
+
+            for (var i = 0; i < lineas.length; i++) {
                 var linea = lineas[i].split(' ');
 
                 for (var j = 0; j < linea.length; j++) {
@@ -315,6 +333,7 @@ class GameLayer extends Layer {
                 this.jugador.y = this.jugador.y - this.jugador.alto / 2;
                 this.espacio.agregarCuerpoDinamico(this.jugador);
                 this.añadirBloque(bloquePorDefecto, x, y)
+                this.marcar(this.jugador, estadosMC.jugador)
 
                 // guardamos los puntos de spawn
                 this.spawnX = this.jugador.x
@@ -322,10 +341,11 @@ class GameLayer extends Layer {
                 break;
             case "G_En":
                 // Generador de enemigos
-                var generadorEnemigos = new GeneradorEnemigos(imagenes.teleport_azul, x, y)
+                var generadorEnemigos = new GeneradorEnemigos(imagenes.teleport_azul, x, y, 2)
                 generadorEnemigos.y = generadorEnemigos.y - generadorEnemigos.alto / 2;
                 // modificación para empezar a contar desde el suelo
                 this.generadoresEnemigos.push(generadorEnemigos)
+                this.marcar(generadorEnemigos)
                 this.espacio.agregarCuerpoEstatico(generadorEnemigos);
                 this.añadirBloque(imagenes.cesped_cc, x, y)
                 break;
@@ -333,20 +353,17 @@ class GameLayer extends Layer {
 
         switch (simbolo) {
             case "Falo":
+                // falo
                 var npc = new Falo(x, y)
                 npc.y = npc.y - npc.alto / 2;
                 this.npcs.push(npc);
                 this.añadirBloque(bloquePorDefecto, x, y)
                 this.espacio.agregarCuerpoDinamico(npc);
+                this.marcar(npc, estadosMC.npc)
                 this.espacio.agregarCuerpoEstatico(npc);
                 break;
             case "Mari":
-                // Generador de enemigos
-                var generadorEnemigos = new GeneradorEnemigos(imagenes.teleport_azul, x, y)
-                generadorEnemigos.y = generadorEnemigos.y - generadorEnemigos.alto / 2;
-                this.generadoresEnemigos.push(generadorEnemigos)
-                this.espacio.agregarCuerpoEstatico(generadorEnemigos);
-                this.añadirBloque(imagenes.cesped_cc, x, y)
+                // mario
                 break;
         }
 
@@ -375,6 +392,7 @@ class GameLayer extends Layer {
                 var moai = new Moai(x, y);
                 this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.pedestal, x, y)
+                this.marcar(moai)
                 this.añadirModeloEstatico(moai)
                 break;
             case this.getCase(simbolo, "CofA"):
@@ -384,6 +402,7 @@ class GameLayer extends Layer {
                 modelo.y = modelo.y - modelo.alto / 2;
                 // modificación para empezar a contar desde el suelo
                 this.interactuables.push(modelo);
+                this.marcar(modelo)
                 this.espacio.agregarCuerpoEstatico(modelo)
                 break;
             case this.getCase(simbolo, "Plac"):
@@ -523,8 +542,11 @@ class GameLayer extends Layer {
                 this.añadirBloqueEstatico(imagenes.cast2, x, y)
                 break;
             case this.getCase(simbolo, "Cas3"):
+                // será la puerta a el siguiente nivel
                 this.añadirBloque(bloquePorDefecto, x, y)
-                this.añadirBloqueEstatico(imagenes.cast3, x, y)
+                var puerta = new Puerta(imagenes.cast3, x, y)
+                puerta.y = puerta.y - puerta.alto / 2;
+                this.interactuables.push(puerta);
                 break;
             case this.getCase(simbolo, "Cas4"):
                 this.añadirBloque(bloquePorDefecto, x, y)
@@ -548,7 +570,10 @@ class GameLayer extends Layer {
     }
 
     añadirBloqueEstatico(imagen, x, y) {
-        return this.espacio.agregarCuerpoEstatico(this.añadirBloque(imagen, x, y))
+        var bloque = this.añadirBloque(imagen, x, y)
+        this.marcar(bloque)
+        this.espacio.agregarCuerpoEstatico(bloque)
+        return bloque
     }
 
     añadirBloque(imagen, x, y) {
@@ -563,7 +588,17 @@ class GameLayer extends Layer {
         modelo.y = modelo.y - modelo.alto / 2;
         // modificación para empezar a contar desde el suelo
         this.bloques.push(modelo);
+        this.marcar(modelo)
         this.espacio.agregarCuerpoEstatico(modelo)
         return modelo
+    }
+
+    marcar(modelo, valor = estadosMC.bloque) {
+        if (modelo.x >= 0 && modelo.y >= 0) {
+            // bloques de arriba a la izquierda
+            var i = Math.floor(modelo.y / 64)
+            var j = Math.floor((modelo.x - modelo.ancho / 2) / 64) // centro
+            this.matrizCaminos[i][j] = valor
+        }
     }
 }
