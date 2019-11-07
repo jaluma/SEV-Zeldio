@@ -107,14 +107,9 @@ class GameLayer extends Layer {
         }
 
         this.jugador.actualizar();
-        for (var i = 0; i < this.generadoresEnemigos.length; i++) {
-            this.generadoresEnemigos[i].actualizar();
-        }
-        for (var i = 0; i < this.enemigos.length; i++) {
-            this.enemigos[i].actualizar();
-        }
         for (var i = 0; i < this.npcs.length; i++) {
             this.npcs[i].actualizar();
+            this.marcar(this.npcs[i], estadosMC.npc)
             if (this.npcs[i].colisiona(this.jugador)) {
                 if (this.jugador.isInteractuar()) {
                     var object = this.npcs[i].interactuar()
@@ -126,6 +121,12 @@ class GameLayer extends Layer {
             } else {
                 this.espacio.agregarCuerpoEstatico(this.npcs[i])
             }
+        }
+        for (var i = 0; i < this.generadoresEnemigos.length; i++) {
+            this.generadoresEnemigos[i].actualizar();
+        }
+        for (var i = 0; i < this.enemigos.length; i++) {
+            this.enemigos[i].actualizar();
         }
         for (var i = 0; i < this.coleccionables.length; i++) {
             this.coleccionables[i].actualizar();

@@ -33,3 +33,25 @@ var estadosTile = {};
 estadosTile.normal = 2;
 estadosTile.rompiendo = 3;
 estadosTile.roto = 4;
+
+var estadosMC = {};
+estadosMC.vacio = 0;
+estadosMC.jugador = 1;
+estadosMC.bloque = 2;
+estadosMC.npc = 3
+estadosMC.enemigo = 4
+
+estadosMC.start = 10;
+estadosMC.valid = 11;
+estadosMC.invalid = 12;
+estadosMC.blocked = 13;
+estadosMC.visited = 14;
+estadosMC.unknown = 15
+
+var directions = {}
+directions.north = [0, -1]
+directions.south = [0, 1]
+directions.west = [-1, 0]
+directions.east = [1, 0]
+
+var estadosLayers = Array(nivelMaximo)

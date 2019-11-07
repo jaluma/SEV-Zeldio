@@ -1,9 +1,11 @@
 class GeneradorEnemigos extends Modelo {
 
-    constructor(rutaImagen, x, y, xEnemigo, yEnemigo) {
+    constructor(rutaImagen, x, y, limit = 5) {
         super(rutaImagen, x, y)
 
         this.animacion = new Animacion(imagenes.teleport_azul_a, this.ancho, this.alto, 6, 3);
+
+        this.limit = limit
 
         this.delayInt = 200
         this.delay = this.delayInt * 0.2;
@@ -15,7 +17,7 @@ class GeneradorEnemigos extends Modelo {
     actualizar() {
         this.animacion.actualizar();
 
-        if (gameLayer.enemigos.length < 5) {
+        if (gameLayer.enemigos.length < this.limit) {
             // generar nuevos enemigos en el gamelayer
             if (this.delay <= 0) {
                 // Generador de enemigos
