@@ -37,17 +37,29 @@ class GameLayer extends Layer {
             this.iconoVidas.push(new Fondo(imagenes.icono_vidas, resolution.width * x, resolution.height * 0.05))
         }
 
-        // iniciamos el nivel (mecanicas)
+        var texto = ""
+            // iniciamos el nivel (mecanicas)
         switch (nivelActual) {
             case 0:
+                texto = "Mata los enemigos para avanzar."
                 break;
             case 1:
+                texto = "¿Tendrás la suerte necesaría?"
                 this.colocarObjeto(Cofre)
                 break;
             case 2:
+                texto = "La memoria bien ¿no?"
+                    // algo
+                break;
+            case 3:
+                texto = "Uff. Esto se complica..."
                 this.generarOrden(Placa)
                 this.orden = 0
                 break;
+        }
+
+        if (texto !== "") {
+            this.texto = new TextoBocadillo("Nivel " + (nivelActual + 1) + ": " + texto)
         }
     }
 
@@ -164,7 +176,7 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.interactuables.length; i++) {
             if (this.interactuables[i].colisiona(this.jugador)) {
                 if (this.jugador.isInteractuar() || !this.interactuables[i].activarConBoton) {
-                    var object = this.interactuables[i].interactuar(this.modelo)
+                    var object = this.interactuables[i].interactuar(i)
                     if (typeof object === "string") {
                         this.texto = new TextoBocadillo(object)
                     } else if (object !== null) {
@@ -222,6 +234,12 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.bloques.length; i++) {
             this.bloques[i].dibujar(this.scrollX, this.scrollY);
         }
+        for (var i = 0; i < this.coleccionables.length; i++) {
+            this.coleccionables[i].dibujar(this.scrollX, this.scrollY);
+        }
+        for (var i = 0; i < this.interactuables.length; i++) {
+            this.interactuables[i].dibujar(this.scrollX, this.scrollY);
+        }
 
         for (var i = 0; i < this.generadoresEnemigos.length; i++) {
             this.generadoresEnemigos[i].dibujar(this.scrollX, this.scrollY);
@@ -232,12 +250,7 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.npcs.length; i++) {
             this.npcs[i].dibujar(this.scrollX, this.scrollY);
         }
-        for (var i = 0; i < this.coleccionables.length; i++) {
-            this.coleccionables[i].dibujar(this.scrollX, this.scrollY);
-        }
-        for (var i = 0; i < this.interactuables.length; i++) {
-            this.interactuables[i].dibujar(this.scrollX, this.scrollY);
-        }
+        this.jugador.dibujar(this.scrollX, this.scrollY);
 
         // HUD
         this.iconoMonedas.dibujar();
@@ -250,8 +263,6 @@ class GameLayer extends Layer {
             this.texto.dibujar(this.scrollX, this.scrollY);
         }
         this.inventario.dibujar()
-
-        this.jugador.dibujar(this.scrollX, this.scrollY);
     }
 
 
@@ -447,28 +458,22 @@ class GameLayer extends Layer {
         switch (simbolo) {
             case this.getCase(simbolo, "Ca_s"):
                 this.añadirBloque(bloquePorDefecto, x, y)
-                this.añadirBloque(imagenes.camino_sup, x, y)
-                break;
+                return this.añadirBloque(imagenes.camino_sup, x, y)
             case this.getCase(simbolo, "Ca_a"):
                 this.añadirBloque(bloquePorDefecto, x, y)
-                this.añadirBloque(imagenes.camino_abajo, x, y)
-                break;
+                return this.añadirBloque(imagenes.camino_abajo, x, y)
             case this.getCase(simbolo, "Ca_i"):
                 this.añadirBloque(bloquePorDefecto, x, y)
-                this.añadirBloque(imagenes.camino_izqda, x, y)
-                break;
+                return this.añadirBloque(imagenes.camino_izqda, x, y)
             case this.getCase(simbolo, "Ca_d"):
                 this.añadirBloque(bloquePorDefecto, x, y)
-                this.añadirBloque(imagenes.camino_dcha, x, y)
-                break;
+                return this.añadirBloque(imagenes.camino_dcha, x, y)
             case this.getCase(simbolo, "Cr_d"):
                 this.añadirBloque(bloquePorDefecto, x, y)
-                this.añadirBloque(imagenes.cruce_supdcha, x, y)
-                break;
+                return this.añadirBloque(imagenes.cruce_supdcha, x, y)
             case this.getCase(simbolo, "Cr_i"):
                 this.añadirBloque(bloquePorDefecto, x, y)
-                this.añadirBloque(imagenes.cruce_supizqda, x, y)
-                break;
+                return this.añadirBloque(imagenes.cruce_supizqda, x, y)
         }
 
         // suelo de madera

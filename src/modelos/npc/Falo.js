@@ -7,11 +7,6 @@ class Falo extends Npc {
         this.aDerecha = new Animacion(imagenes.faloNpcDerecha, this.ancho, this.alto, 2, 30, true)
         this.animacion = this.aIdle
 
-        this.interaccion = [
-            "Buenas chico... ",
-            "Veo qué tienes monedas,\n te dejo pasar por 10",
-            ""
-        ]
         this.coste = 10
     }
 

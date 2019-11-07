@@ -57,8 +57,4 @@ class Placa extends BaseInteractuable {
         return this.getObjeto()
     }
 
-    getObjeto() {
-        return this.objeto !== null ? this.objeto : "Ohhhh mala suerte..."
-    }
-
 }

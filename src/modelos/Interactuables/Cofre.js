@@ -7,6 +7,7 @@ class Cofre extends BaseInteractuable {
         this.aAbrirCofre = new Animacion(imagenes.cofre_anim, this.ancho, this.alto, 5, 4, false);
 
         this.animacion = this.aCofre
+
         this.abierto = false
     }
 
@@ -28,16 +29,8 @@ class Cofre extends BaseInteractuable {
         this.abrir()
         if (!this.abierto) {
             this.abierto = !this.abierto
-                // if (this.objeto !== null) {
-                //     this.objeto.x -= scrollX
-                //     this.objeto.y -= scrollY
-                // }
             return this.getObjeto()
         }
         return null
-    }
-
-    getObjeto() {
-        return this.objeto !== null ? this.objeto : "Ohhhh mala suerte..."
     }
 }
