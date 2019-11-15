@@ -12,7 +12,7 @@ var entrada = entradas.pulsaciones;
 
 
 var nivelActual = 0;
-var nivelMaximo = 2;
+var nivelMaximo = 3;
 
 
 var estados = {};

@@ -29,6 +29,13 @@ class Cofre extends BaseInteractuable {
         this.abrir()
         if (!this.abierto) {
             this.abierto = !this.abierto
+            if (this.objeto == null) {
+                nivelActual--
+                layer = estadosLayers[nivelActual]
+                layer.jugador.x = layer.spawnX
+                layer.jugador.y = layer.spawnY
+            }
+
             return this.getObjeto()
         }
         return null
