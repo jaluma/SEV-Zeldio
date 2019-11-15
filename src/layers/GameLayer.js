@@ -41,14 +41,14 @@ class GameLayer extends Layer {
             // iniciamos el nivel (mecanicas)
         switch (nivelActual) {
             case 0:
-                texto = "Mata los enemigos para avanzar."
+                texto = "Mata a los enemigos para avanzar."
                 break;
             case 1:
-                texto = "¿Tendrás la suerte necesaría?"
+                texto = "¿Tendrás la suerte necesaria?"
                 this.colocarObjeto(Cofre)
                 break;
             case 2:
-                texto = "La memoria bien ¿no?"
+                texto = "La memoria bien, ¿no?"
                     // algo
                 break;
             case 3:
@@ -213,7 +213,7 @@ class GameLayer extends Layer {
             i = i - 1;
 
             // mover al jugador
-            this.texto = new TextoBocadillo("Ohhh, te has caido!!", 3 * 10)
+            this.texto = new TextoBocadillo("Ohhh, ¡te has caído!", 3 * 10)
             this.jugador.x = this.spawnX
             this.jugador.y = this.spawnY
         } else {
