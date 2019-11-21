@@ -103,7 +103,8 @@ var imagenes = {
     pedestal: "res/pedestal.png",
     llave: "res/llave.png",
     placa: "res/bloques/cemento/placa.png",
-    placa_activada: "res/bloques/cemento/placa_activada.png"
+    placa_activada: "res/bloques/cemento/placa_activada.png",
+    trampilla: "res/bloques/puertas/door.png",
 
 };
 

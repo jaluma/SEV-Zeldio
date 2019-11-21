@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f745157f-24dc-48cc-980e-882cb54a1032" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/res/bloques/puertas/door.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modelos/Interactuables/Trampilla.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Res.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Res.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layers/GameLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layers/GameLayer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos/Interactuables/Cofre.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelos/Interactuables/Cofre.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelos/Interactuables/Puerta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelos/Interactuables/Puerta.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,21 +29,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="1Sc7PtmKjEEDolnvvfwDecDWXcg" />
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Documents/GitHub/SEV/ampliacionPlataformas" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="K:\christine\Desktop\UNI\3. TERCERO\SEV\Zeldio\res\bloques" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\En proceso\Uniovi\SOF - Asignaturas\Videojuegos\2020 USAR ESTO PARA LAS PRACTICAS\2 -\partirDeEste\s2\res" />
       <recent name="C:\Users\jordansoy\WebstormProjects\s2\res" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="K:\christine\Desktop\UNI\3. TERCERO\SEV\Zeldio\res\bloques\puertas" />
+      <recent name="K:\christine\Desktop\UNI\3. TERCERO\SEV\Zeldio\res\bloques" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -84,7 +96,7 @@
       <workItem from="1570109996477" duration="7824000" />
       <workItem from="1570131573266" duration="511000" />
       <workItem from="1571851029578" duration="8803000" />
-      <workItem from="1574349634483" duration="10762000" />
+      <workItem from="1574349634483" duration="14828000" />
     </task>
     <servers />
   </component>

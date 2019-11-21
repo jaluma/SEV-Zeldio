@@ -1,16 +1,15 @@
 class Puerta extends BaseInteractuable {
 
-    constructor(imagen, x, y, recuperarLayer = false, nivel = nivelActual + 1) {
+    constructor(imagen, x, y, recuperarLayer = false, activarConBoton = false) {
         super(imagen, x, y, null)
 
         this.aPuerta = new Animacion(imagen, this.ancho, this.alto, 1, 1, true);
 
         this.animacion = this.aPuerta
-        this.activarConBoton = false
+        this.activarConBoton = activarConBoton
         this.rango = 10
 
         this.recuperarLayer = recuperarLayer
-        this.nivel = nivelActual
     }
 
     actualizar() {

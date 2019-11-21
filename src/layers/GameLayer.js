@@ -426,6 +426,15 @@ class GameLayer extends Layer {
                 // modificación para empezar a contar desde el suelo
                 this.interactuables.push(modelo);
                 break;
+            case this.getCase(simbolo, "Door"):
+                // trampilla
+                var modelo = new Trampilla(imagenes.trampilla, x, y, true)
+                this.añadirBloque(bloquePorDefecto, x, y)
+                modelo.y = modelo.y - modelo.alto / 2;
+                // modificación para empezar a contar desde el suelo
+                this.interactuables.push(modelo);
+                break;
+
         }
 
         // añadimos los bloques

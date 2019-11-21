@@ -1,10 +1,10 @@
 B_cc
 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
 0000 B_si B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sc B_sd 0000
-0000 B_ci B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cd 0000
+0000 B_ci B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc Door B_cd 0000
 0000 B_ci B_cc Moai B_cc Moai B_cc Moai B_cc Moai B_cc Moai B_cc B_cc B_cd 0000
 0000 B_ci B_cc CofA B_cc CofA B_cc CofA B_cc CofA B_cc CofA B_cc B_cc B_cd 0000
 0000 B_ci B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cc B_cd 0000
-0000 B_ci B_cc B_cc B_cc B_cc B_cc Pl_1 Ma_H Ma_V B_cc B_cc B_cc B_cc B_cd 0000
+0000 B_ci B_cc B_cc B_cc B_cc B_cc Pl_1 B_cc B_cc B_cc B_cc B_cc B_cc B_cd 0000
 0000 B_ii B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_ic B_id 0000
 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
