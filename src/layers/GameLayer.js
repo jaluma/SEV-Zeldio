@@ -478,6 +478,18 @@ class GameLayer extends Layer {
             case this.getCase(simbolo, "Cr_i"):
                 this.añadirBloque(bloquePorDefecto, x, y)
                 return this.añadirBloque(imagenes.cruce_supizqda, x, y)
+            case this.getCase(simbolo, "CaAi"):
+                this.añadirBloque(imagenes.aguacentro, x, y)
+                return this.añadirBloque(imagenes.camino_izqda, x, y)
+            case this.getCase(simbolo, "CaAd"):
+                this.añadirBloque(imagenes.aguacentro, x, y)
+                return this.añadirBloque(imagenes.camino_dcha, x, y)
+            case this.getCase(simbolo, "CAii"):
+                this.añadirBloque(imagenes.aguainf, x, y)
+                return this.añadirBloque(imagenes.camino_izqda, x, y)
+            case this.getCase(simbolo, "CAdi"):
+                this.añadirBloque(imagenes.aguainf, x, y)
+                return this.añadirBloque(imagenes.camino_dcha, x, y)
         }
 
         // suelo de madera
@@ -543,11 +555,11 @@ class GameLayer extends Layer {
         // castillo
         switch (simbolo) {
             case this.getCase(simbolo, "Cas1"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast1, x, y)
                 break;
             case this.getCase(simbolo, "Cas2"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloque(imagenes.camino_izqda, x, y)
                 this.añadirBloqueEstatico(imagenes.cast2, x, y)
                 break;
@@ -559,61 +571,95 @@ class GameLayer extends Layer {
                 this.interactuables.push(puerta);
                 break;
             case this.getCase(simbolo, "Cas4"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloque(imagenes.camino_dcha, x, y)
                 this.añadirBloqueEstatico(imagenes.cast4, x, y)
                 break;
             case this.getCase(simbolo, "Cas5"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast5, x, y)
                 break;
             case this.getCase(simbolo, "Cas6"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast6, x, y)
                 break;
             case this.getCase(simbolo, "Cas7"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast7, x, y)
                 break;
             case this.getCase(simbolo, "Cas8"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast8, x, y)
                 break;
             case this.getCase(simbolo, "Cas9"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast9, x, y)
                 break;
             case this.getCase(simbolo, "Ca10"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast10, x, y)
                 break;
             case this.getCase(simbolo, "Ca11"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast11, x, y)
                 break;
             case this.getCase(simbolo, "Ca12"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast12, x, y)
                 break;
             case this.getCase(simbolo, "Ca13"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast13, x, y)
                 break;
             case this.getCase(simbolo, "Ca14"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast14, x, y)
                 break;
             case this.getCase(simbolo, "Ca15"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast15, x, y)
                 break;
             case this.getCase(simbolo, "Ca16"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast16, x, y)
                 break;
             case this.getCase(simbolo, "Ca17"):
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
                 this.añadirBloqueEstatico(imagenes.cast17, x, y)
+                break;
+        }
+
+        // awa
+        switch (simbolo) {
+            case this.getCase(simbolo, "AgSD"):
+                this.añadirBloqueEstatico(imagenes.aguasupcha, x, y)
+                break;
+            case this.getCase(simbolo, "Asup"):
+                this.añadirBloqueEstatico(imagenes.aguasup, x, y)
+                break;
+            case this.getCase(simbolo, "Adch"):
+                this.añadirBloqueEstatico(imagenes.aguadcha, x, y)
+                break;
+            case this.getCase(simbolo, "Actr"):
+                this.añadirBloqueEstatico(imagenes.aguacentro, x, y)
+                break;
+            case this.getCase(simbolo, "Aizq"):
+                this.añadirBloqueEstatico(imagenes.aguaizqda, x, y)
+                break;
+            case this.getCase(simbolo, "AgSI"):
+                this.añadirBloque(imagenes.cesped_sc, x, y)
+                this.añadirBloqueEstatico(imagenes.aguasupizqda, x, y)
+                break;
+            case this.getCase(simbolo, "AgID"):
+                this.añadirBloque(imagenes.cesped_cd, x, y)
+                this.añadirBloqueEstatico(imagenes.aguainfdcha, x, y)
+                break;
+            case this.getCase(simbolo, "Ainf"):
+                this.añadirBloqueEstatico(imagenes.aguainf, x, y)
+                break;
+            case this.getCase(simbolo, "AgII"):
+                this.añadirBloque(imagenes.cesped_cc, x, y)
+                this.añadirBloqueEstatico(imagenes.aguainfizqda, x, y)
                 break;
         }
     }

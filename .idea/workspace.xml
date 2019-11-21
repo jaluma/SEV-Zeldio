@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f745157f-24dc-48cc-980e-882cb54a1032" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/res/bloques/caminocentro.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/agua/aguacentro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/agua/aguadcha.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/agua/aguainf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/agua/aguainfdcha.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/agua/aguainfizqda.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/agua/aguaizqda.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/agua/aguasup.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/agua/aguasupdcha.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/agua/aguasupizq.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/bloques/castillo/Cas10.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca10.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Res.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Res.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layers/GameLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layers/GameLayer.js" afterDir="false" />
     </list>
@@ -28,30 +28,6 @@
         <option value="JavaScript File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>colision</find>
-      <find>actual</find>
-      <find>cargarOb</find>
-      <find>enemigos =</find>
-      <find>procesarControles</find>
-      <find>ac</find>
-      <find>disparo</find>
-      <find>disparo =</find>
-      <find>disparar</find>
-      <find>disparar()</find>
-      <find>cargarMapa</find>
-      <find>splice</find>
-      <find>procesarControl</find>
-      <find>moverAbajo</find>
-      <find>actuali</find>
-      <find>actualizar</find>
-      <find>calcularPulsa</find>
-      <find>procesaro</find>
-      <find>dibujar</find>
-      <find>32</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -116,7 +92,7 @@
       <workItem from="1570109996477" duration="7824000" />
       <workItem from="1570131573266" duration="511000" />
       <workItem from="1571851029578" duration="8803000" />
-      <workItem from="1574349634483" duration="2811000" />
+      <workItem from="1574349634483" duration="8222000" />
     </task>
     <servers />
   </component>
