@@ -46,7 +46,6 @@ class Placa extends BaseInteractuable {
                 this.ultimaVezActivada = now
             } else {
                 layer.orden = 0
-                this.desactivar()
                 this.objeto = null
                 for (var i = 0; i < layer.interactuables.length; i++) {
                     layer.interactuables[i].desactivar()

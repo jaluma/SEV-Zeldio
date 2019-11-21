@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f745157f-24dc-48cc-980e-882cb54a1032" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/res/bloques/puertas/door.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modelos/Interactuables/Trampilla.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Res.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Res.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layers/GameLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layers/GameLayer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos/Interactuables/Puerta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelos/Interactuables/Puerta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Globales.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Globales.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos/Interactuables/Placa.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelos/Interactuables/Placa.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +90,7 @@
       <workItem from="1570109996477" duration="7824000" />
       <workItem from="1570131573266" duration="511000" />
       <workItem from="1571851029578" duration="8803000" />
-      <workItem from="1574349634483" duration="14828000" />
+      <workItem from="1574349634483" duration="15655000" />
     </task>
     <servers />
   </component>
