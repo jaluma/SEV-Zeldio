@@ -44,7 +44,7 @@ class GameLayer extends Layer {
                 texto = "Mata los enemigos para avanzar."
                 break;
             case 1:
-                texto = "¿Tendrás la suerte necesaría?"
+                texto = "¿Tendrás la suerte necesaria?"
                 this.colocarObjeto(Cofre)
                 break;
             case 2:
@@ -90,7 +90,7 @@ class GameLayer extends Layer {
         return array
     }
 
-    actualizar() {
+    async actualizar() {
         this.espacio.actualizar();
 
         for (var i = 0; i < this.matrizCaminos.length; i++) {
@@ -176,7 +176,7 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.interactuables.length; i++) {
             if (this.interactuables[i].colisiona(this.jugador)) {
                 if (this.jugador.isInteractuar() || !this.interactuables[i].activarConBoton) {
-                    var object = this.interactuables[i].interactuar(i)
+                    var object = await this.interactuables[i].interactuar(i)
                     if (typeof object === "string") {
                         this.texto = new TextoBocadillo(object)
                     } else if (object !== null) {
@@ -566,7 +566,7 @@ class GameLayer extends Layer {
             case this.getCase(simbolo, "Cas3"):
                 // será la puerta a el siguiente nivel
                 this.añadirBloque(imagenes.camino_centro, x, y)
-                var puerta = new Puerta(imagenes.cast3, x, y)
+                var puerta = new Puerta(imagenes.cast3, x, y, true)
                 puerta.y = puerta.y - puerta.alto / 2;
                 this.interactuables.push(puerta);
                 break;

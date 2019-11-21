@@ -39,17 +39,17 @@ class Placa extends BaseInteractuable {
     interactuar() {
         var now = Date.now()
         if (this.ultimaVezActivada + this.delay <= now && !this.activado) {
-            if (gameLayer.orden == this.orden) {
-                gameLayer.orden++;
+            if (layer.orden == this.orden) {
+                layer.orden++;
                 this.activar()
-                this.objeto = "Placa " + gameLayer.orden + " activada."
+                this.objeto = "Placa " + layer.orden + " activada."
                 this.ultimaVezActivada = now
             } else {
-                gameLayer.orden = 0
+                layer.orden = 0
                 this.desactivar()
                 this.objeto = null
-                for (var i = 0; i < gameLayer.interactuables.length; i++) {
-                    gameLayer.interactuables[i].desactivar()
+                for (var i = 0; i < layer.interactuables.length; i++) {
+                    layer.interactuables[i].desactivar()
                 }
             }
         }

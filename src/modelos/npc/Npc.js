@@ -62,7 +62,7 @@ class Npc extends Modelo {
     interactuar() {}
 
     async mostrarBocadillo(message, delay = 2 * 1000) {
-        gameLayer.texto = new TextoBocadillo(message)
+        layer.texto = new TextoBocadillo(message)
         await this.sleep(delay);
     }
 
@@ -77,9 +77,5 @@ class Npc extends Modelo {
         this.vy = vy
         this.delay = this.tiempoBloque * numBloques / vy
         this.ms = 0
-    }
-
-    sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }

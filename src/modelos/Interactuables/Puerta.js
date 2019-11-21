@@ -25,25 +25,23 @@ class Puerta extends BaseInteractuable {
 
     interactuar() {
         // save info
-        estadosLayers[nivelActual] = this.clone(gameLayer)
+        estadosLayers[nivelActual] = this.clone(layer)
 
         nivelActual++;
         if (nivelActual > nivelMaximo) {
             nivelActual = 0;
         }
 
-        if (this.recuperarLayer) {
-            nivelActual--
+        var jugador = this.clone(layer.jugador)
+        if (this.recuperarLayer && typeof estadosLayers[nivelActual] != "undefined") {
             layer = estadosLayers[nivelActual]
-            layer.jugador.x = gameLayer.spawnX
-            layer.jugador.y = gameLayer.spawnY
-        } else {
+        } else { 
             layer.iniciar()
         }
-    }
-
-    clone(model) {
-        return Object.assign(Object.create(Object.getPrototypeOf(model)), model);
+        layer.jugador.vidas = jugador.vidas
+        layer.jugador.monedas = jugador.monedas 
+        layer.jugador.x = layer.spawnX
+        layer.jugador.y = layer.spawnY
     }
 
 }

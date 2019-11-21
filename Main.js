@@ -34,9 +34,9 @@ function iniciarJuego() {
 }
 
 
-function loop() {
+async function loop() {
     if (layer != null) {
-        layer.actualizar();
+        await layer.actualizar();
         if (entrada == entradas.pulsaciones) {
             layer.calcularPulsaciones(pulsaciones);
         }

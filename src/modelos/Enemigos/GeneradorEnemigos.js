@@ -17,15 +17,15 @@ class GeneradorEnemigos extends Modelo {
     actualizar() {
         this.animacion.actualizar();
 
-        if (gameLayer.enemigos.length < this.limit) {
-            // generar nuevos enemigos en el gamelayer
+        if (layer.enemigos.length < this.limit) {
+            // generar nuevos enemigos en el layer
             if (this.delay <= 0) {
                 // Generador de enemigos
                 var enemigo = this.getEnemigo()
                 enemigo.y = enemigo.y - enemigo.alto / 2;
                 // modificación para empezar a contar desde el suelo
-                gameLayer.enemigos.push(enemigo);
-                gameLayer.espacio.agregarCuerpoDinamico(enemigo);
+                layer.enemigos.push(enemigo);
+                layer.espacio.agregarCuerpoDinamico(enemigo);
 
                 this.delay = this.delayInt
             }
@@ -44,10 +44,6 @@ class GeneradorEnemigos extends Modelo {
         var enemigo = this.typesEnemigos[random]
         enemigo.x = this.x + this.ancho * 1
         return this.clone(enemigo)
-    }
-
-    clone(model) {
-        return Object.assign(Object.create(Object.getPrototypeOf(model)), model);
     }
 
 }

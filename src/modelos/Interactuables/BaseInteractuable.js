@@ -16,6 +16,6 @@ class BaseInteractuable extends Modelo {
     }
 
     getObjeto() {
-        return this.objeto !== null ? this.objeto : "Ohhhh mala suerte..."
+        return this.objeto !== null ? this.objeto : "Ohh, mala suerte..."
     }
 }

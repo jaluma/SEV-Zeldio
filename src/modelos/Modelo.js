@@ -11,8 +11,8 @@ class Modelo {
     }
 
     estaEnPantalla() {
-        if ((this.x - gameLayer.scrollX) - this.ancho / 2 <= resolution.width &&
-            (this.x - gameLayer.scrollX) + this.ancho / 2 >= 0 &&
+        if ((this.x - layer.scrollX) - this.ancho / 2 <= resolution.width &&
+            (this.x - layer.scrollX) + this.ancho / 2 >= 0 &&
             this.y - this.alto / 2 <= resolution.height &&
             this.y + this.alto / 2 >= 0) {
             return true;
@@ -40,5 +40,13 @@ class Modelo {
 
         }
         return colisiona;
+    }
+
+    clone(model) {
+        return Object.assign(Object.create(Object.getPrototypeOf(model)), model);
+    }
+
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }

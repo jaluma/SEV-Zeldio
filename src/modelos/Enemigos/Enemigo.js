@@ -23,7 +23,7 @@ class Enemigo extends Modelo {
 
         switch (this.estado) {
             case estados.moviendo:
-                var path = findShortestPath(this, gameLayer.matrizCaminos);
+                var path = findShortestPath(this, layer.matrizCaminos);
                 if (!path) {
                     // no hay camino
                     this.vx = 0

@@ -25,15 +25,24 @@ class Cofre extends BaseInteractuable {
         this.animacion.dibujar(this.x - scrollX, this.y - scrollY);
     }
 
-    interactuar() {
+    async interactuar() {
         this.abrir()
         if (!this.abierto) {
             this.abierto = !this.abierto
             if (this.objeto == null) {
+                estadosLayers[nivelActual] = this.clone(layer)
                 nivelActual--
+                var jugador = this.clone(layer.jugador)
+
+                await this.sleep(1000);
+
                 layer = estadosLayers[nivelActual]
+                layer.jugador.vidas = jugador.vidas
+                layer.jugador.monedas = jugador.monedas
                 layer.jugador.x = layer.spawnX
                 layer.jugador.y = layer.spawnY
+
+                layer.texto = new TextoBocadillo("Ohh, mala suerte...")
             }
 
             return this.getObjeto()
