@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f745157f-24dc-48cc-980e-882cb54a1032" name="Default" comment="" />
+    <list default="true" id="f745157f-24dc-48cc-980e-882cb54a1032" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Bloque.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Boton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Coleccionables/Coleccionable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Coleccionables/Moneda.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/DisparoJugador.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Enemigos/Enemigo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Enemigos/GeneradorEnemigos.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Enemigos/RickEnemigo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Fondo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Jugador.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Modelo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Textos/Texto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos copy/Textos/TextoMenu.js" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +107,7 @@
       <workItem from="1570109996477" duration="7824000" />
       <workItem from="1570131573266" duration="511000" />
       <workItem from="1571851029578" duration="8803000" />
+      <workItem from="1574349634483" duration="424000" />
     </task>
     <servers />
   </component>
@@ -103,7 +119,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
