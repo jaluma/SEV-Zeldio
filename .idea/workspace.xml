@@ -2,20 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f745157f-24dc-48cc-980e-882cb54a1032" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/res/bloques/caminocentro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca17.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Bloque.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Boton.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Coleccionables/Coleccionable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Coleccionables/Moneda.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/DisparoJugador.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Enemigos/Enemigo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Enemigos/GeneradorEnemigos.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Enemigos/RickEnemigo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Fondo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Jugador.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Modelo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Textos/Texto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos copy/Textos/TextoMenu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/bloques/castillo/Cas10.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/bloques/castillo/Ca10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Res.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Res.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layers/GameLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layers/GameLayer.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,6 +85,16 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Zeldio/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -107,7 +116,7 @@
       <workItem from="1570109996477" duration="7824000" />
       <workItem from="1570131573266" duration="511000" />
       <workItem from="1571851029578" duration="8803000" />
-      <workItem from="1574349634483" duration="424000" />
+      <workItem from="1574349634483" duration="2811000" />
     </task>
     <servers />
   </component>

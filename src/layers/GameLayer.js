@@ -370,6 +370,7 @@ class GameLayer extends Layer {
                 npc.y = npc.y - npc.alto / 2;
                 this.npcs.push(npc);
                 this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloque(imagenes.camino_centro, x, y)
                 this.espacio.agregarCuerpoDinamico(npc);
                 this.marcar(npc, estadosMC.npc)
                 this.espacio.agregarCuerpoEstatico(npc);
@@ -462,6 +463,9 @@ class GameLayer extends Layer {
             case this.getCase(simbolo, "Ca_a"):
                 this.añadirBloque(bloquePorDefecto, x, y)
                 return this.añadirBloque(imagenes.camino_abajo, x, y)
+            case this.getCase(simbolo, "Ca_c"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                return this.añadirBloque(imagenes.camino_centro, x, y)
             case this.getCase(simbolo, "Ca_i"):
                 this.añadirBloque(bloquePorDefecto, x, y)
                 return this.añadirBloque(imagenes.camino_izqda, x, y)
@@ -549,7 +553,7 @@ class GameLayer extends Layer {
                 break;
             case this.getCase(simbolo, "Cas3"):
                 // será la puerta a el siguiente nivel
-                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloque(imagenes.camino_centro, x, y)
                 var puerta = new Puerta(imagenes.cast3, x, y)
                 puerta.y = puerta.y - puerta.alto / 2;
                 this.interactuables.push(puerta);
@@ -566,6 +570,50 @@ class GameLayer extends Layer {
             case this.getCase(simbolo, "Cas6"):
                 this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloqueEstatico(imagenes.cast6, x, y)
+                break;
+            case this.getCase(simbolo, "Cas7"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast7, x, y)
+                break;
+            case this.getCase(simbolo, "Cas8"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast8, x, y)
+                break;
+            case this.getCase(simbolo, "Cas9"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast9, x, y)
+                break;
+            case this.getCase(simbolo, "Ca10"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast10, x, y)
+                break;
+            case this.getCase(simbolo, "Ca11"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast11, x, y)
+                break;
+            case this.getCase(simbolo, "Ca12"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast12, x, y)
+                break;
+            case this.getCase(simbolo, "Ca13"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast13, x, y)
+                break;
+            case this.getCase(simbolo, "Ca14"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast14, x, y)
+                break;
+            case this.getCase(simbolo, "Ca15"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast15, x, y)
+                break;
+            case this.getCase(simbolo, "Ca16"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast16, x, y)
+                break;
+            case this.getCase(simbolo, "Ca17"):
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.añadirBloqueEstatico(imagenes.cast17, x, y)
                 break;
         }
     }
