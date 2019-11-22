@@ -105,7 +105,7 @@ var imagenes = {
     placa: "res/bloques/cemento/placa.png",
     placa_activada: "res/bloques/cemento/placa_activada.png",
     trampilla: "res/bloques/puertas/door.png",
-
+    escalera: "res/bloques/puertas/stairs.png",
 };
 
 var rutasImagenes = Object.values(imagenes);

@@ -434,7 +434,14 @@ class GameLayer extends Layer {
                 // modificación para empezar a contar desde el suelo
                 this.interactuables.push(modelo);
                 break;
-
+            case this.getCase(simbolo, "Strs"):
+                // escalera
+                var modelo = new Puerta(imagenes.escalera, x, y, true)
+                this.añadirBloque(bloquePorDefecto, x, y)
+                modelo.y = modelo.y - modelo.alto / 2;
+                // modificación para empezar a contar desde el suelo
+                this.interactuables.push(modelo);
+                break;
         }
 
         // añadimos los bloques
@@ -503,18 +510,22 @@ class GameLayer extends Layer {
 
         // suelo de madera
         switch (simbolo) {
-            case this.getCase(simbolo, "Ma_H"):
+            case this.getCase(simbolo, "Madh"):
                 var bloque = new TileDestruible(imagenes.madera_h, x, y);
                 bloque.y = bloque.y - bloque.alto / 2;
                 // modificación para empezar a contar desde el suelo
                 this.bloques.push(bloque);
                 return bloque
-            case this.getCase(simbolo, "Ma_V"):
+            case this.getCase(simbolo, "Madv"):
                 var bloque = new TileDestruible(imagenes.madera_v, x, y);
                 bloque.y = bloque.y - bloque.alto / 2;
                 // modificación para empezar a contar desde el suelo
                 this.bloques.push(bloque);
                 return bloque
+            case this.getCase(simbolo, "Ma_h"):
+                return this.añadirBloque(imagenes.madera_h, x, y)
+            case this.getCase(simbolo, "Ma_v"):
+                return this.añadirBloque(imagenes.madera_v, x, y)
         }
 
         // baldosas

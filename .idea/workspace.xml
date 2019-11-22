@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Globales.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Globales.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos/Interactuables/Placa.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelos/Interactuables/Placa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layers/GameLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layers/GameLayer.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +90,7 @@
       <workItem from="1570109996477" duration="7824000" />
       <workItem from="1570131573266" duration="511000" />
       <workItem from="1571851029578" duration="8803000" />
-      <workItem from="1574349634483" duration="15655000" />
+      <workItem from="1574349634483" duration="18390000" />
     </task>
     <servers />
   </component>
