@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f745157f-24dc-48cc-980e-882cb54a1032" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/0.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Globales.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Globales.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layers/GameLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layers/GameLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos/Bloque.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelos/Bloque.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos/Interactuables/Cofre.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelos/Interactuables/Cofre.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelos/npc/Falo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelos/npc/Falo.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,13 +42,14 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="K:\christine\Desktop\UNI\3. TERCERO\SEV\Zeldio\src\modelos" />
+      <recent name="K:\christine\Desktop\UNI\3. TERCERO\SEV\Zeldio\res\bloques\puertas" />
+      <recent name="K:\christine\Desktop\UNI\3. TERCERO\SEV\Zeldio\res\bloques" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\En proceso\Uniovi\SOF - Asignaturas\Videojuegos\2020 USAR ESTO PARA LAS PRACTICAS\2 -\partirDeEste\s2\res" />
       <recent name="C:\Users\jordansoy\WebstormProjects\s2\res" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="K:\christine\Desktop\UNI\3. TERCERO\SEV\Zeldio\res\bloques\puertas" />
-      <recent name="K:\christine\Desktop\UNI\3. TERCERO\SEV\Zeldio\res\bloques" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -90,7 +95,10 @@
       <workItem from="1570109996477" duration="7824000" />
       <workItem from="1570131573266" duration="511000" />
       <workItem from="1571851029578" duration="8803000" />
-      <workItem from="1574349634483" duration="18390000" />
+      <workItem from="1574349634483" duration="18988000" />
+      <workItem from="1574389628592" duration="455000" />
+      <workItem from="1574968063946" duration="2352000" />
+      <workItem from="1575145596596" duration="15469000" />
     </task>
     <servers />
   </component>

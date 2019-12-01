@@ -48,11 +48,11 @@ class GameLayer extends Layer {
                 this.colocarObjeto(Cofre)
                 break;
             case 2:
-                texto = "La memoria bien ¿no?"
+                texto = "No solo necesitas suerte, sino también paciencia."
                     // algo
                 break;
             case 3:
-                texto = "Uff. Esto se complica..."
+                texto = "¿Cómo va la memoria?"
                 this.generarOrden(Placa)
                 this.orden = 0
                 break;
@@ -147,6 +147,9 @@ class GameLayer extends Layer {
             this.interactuables[i].actualizar();
         }
         for (var i = 0; i < this.bloques.length; i++) {
+            this.bloques[i].actualizar();
+        }
+        for (var i = 0; i < this.bloques.length; i++) {
             if (this.bloques[i].isDestruible()) {
                 if (this.bloques[i].isSaltable() && this.jugador.colisiona(this.bloques[i])) {
                     this.destruirBloques(i)
@@ -197,15 +200,22 @@ class GameLayer extends Layer {
         if (vidasAEliminar > 0) {
             this.iconoVidas.splice(this.iconoVidas.length - vidasAEliminar, vidasAEliminar);
         }
+
+
+        if (this.puntoSalvado != null && this.jugador.colisiona(this.puntoSalvado)){
+            if (!this.saved)
+                layer.texto = new TextoBocadillo("Punto de salvado alcanzado.")
+            this.saved = true;
+        }
     }
 
     destruirBloques(i) {
         if (this.bloques[i].estado == estadosTile.roto) {
             // creamos un nuevo elemento
-            var bf = new Bloque(this.bloquePorDefecto, this.bloques[i].x, this.bloques[i].y)
+            //var bf = new Bloque(this.bloquePorDefecto, this.bloques[i].x, this.bloques[i].y)
             var b = new Bloque(imagenes.tablon, this.bloques[i].x, this.bloques[i].y)
-            this.bloques.push(bf);
-            this.espacio.agregarCuerpoEstatico(bf)
+            //this.bloques.push(bf);
+            //this.espacio.agregarCuerpoEstatico(bf)
             this.bloques.push(b)
             this.espacio.agregarCuerpoEstatico(b)
                 // eliminamos el anterior
@@ -213,9 +223,15 @@ class GameLayer extends Layer {
             i = i - 1;
 
             // mover al jugador
-            this.texto = new TextoBocadillo("Ohhh, te has caido!!", 3 * 10)
-            this.jugador.x = this.spawnX
-            this.jugador.y = this.spawnY
+            this.texto = new TextoBocadillo("¡Te has caído!");
+            if (this.saved == null || !this.saved){
+                this.jugador.x = this.spawnX;
+                this.jugador.y = this.spawnY;
+            }
+            else{
+                this.jugador.x = this.puntoSalvado.x
+                this.jugador.y = this.puntoSalvado.y
+            }
         } else {
             this.bloques[i].destruir();
         }
@@ -366,14 +382,15 @@ class GameLayer extends Layer {
         switch (simbolo) {
             case "Falo":
                 // falo
-                var npc = new Falo(x, y)
-                npc.y = npc.y - npc.alto / 2;
-                this.npcs.push(npc);
+                this.falo = new Falo(x, y)
+                this.falo.y = this.falo.y - this.falo.alto / 2;
+                this.initialFalox = x;
+                this.npcs.push(this.falo);
                 this.añadirBloque(bloquePorDefecto, x, y)
                 this.añadirBloque(imagenes.camino_centro, x, y)
-                this.espacio.agregarCuerpoDinamico(npc);
-                this.marcar(npc, estadosMC.npc)
-                this.espacio.agregarCuerpoEstatico(npc);
+                this.espacio.agregarCuerpoDinamico(this.falo);
+                this.marcar(this.falo, estadosMC.npc)
+                this.espacio.agregarCuerpoEstatico(this.falo);
                 break;
             case "Mari":
                 // mario
@@ -441,6 +458,16 @@ class GameLayer extends Layer {
                 modelo.y = modelo.y - modelo.alto / 2;
                 // modificación para empezar a contar desde el suelo
                 this.interactuables.push(modelo);
+                break;
+            case this.getCase(simbolo, "Save"):
+                // Generador de enemigos
+                this.añadirBloque(imagenes.madera_h, x, y)
+                this.puntoSalvado = new Bloque(imagenes.teleport_naranja, x, y, new Animacion(imagenes.teleport_naranja_a, this.ancho, this.alto, 6, 3))
+                this.puntoSalvado.y =  this.puntoSalvado.y -  this.puntoSalvado.alto / 2;
+                // modificación para empezar a contar desde el suelo
+                this.bloques.push(this.puntoSalvado)
+                this.espacio.agregarCuerpoDinamico(this.puntoSalvado);
+
                 break;
         }
 
@@ -553,23 +580,23 @@ class GameLayer extends Layer {
         // cemento
         switch (simbolo) {
             case this.getCase(simbolo, "M_si"):
-                return this.añadirBloque(imagenes.cemento_si, x, y)
+                return this.añadirBloqueEstatico(imagenes.cemento_si, x, y)
             case this.getCase(simbolo, "M_sc"):
-                return this.añadirBloque(imagenes.cemento_sc, x, y)
+                return this.añadirBloqueEstatico(imagenes.cemento_sc, x, y)
             case this.getCase(simbolo, "M_sd"):
-                return this.añadirBloque(imagenes.cemento_sd, x, y)
+                return this.añadirBloqueEstatico(imagenes.cemento_sd, x, y)
             case this.getCase(simbolo, "M_ci"):
-                return this.añadirBloque(imagenes.cemento_ci, x, y)
+                return this.añadirBloqueEstatico(imagenes.cemento_ci, x, y)
             case this.getCase(simbolo, "M_cc"):
                 return this.añadirBloque(imagenes.cemento_cc, x, y)
             case this.getCase(simbolo, "M_cd"):
-                return this.añadirBloque(imagenes.cemento_cd, x, y)
+                return this.añadirBloqueEstatico(imagenes.cemento_cd, x, y)
             case this.getCase(simbolo, "M_ii"):
-                return this.añadirBloque(imagenes.cemento_ii, x, y)
+                return this.añadirBloqueEstatico(imagenes.cemento_ii, x, y)
             case this.getCase(simbolo, "M_ic"):
-                return this.añadirBloque(imagenes.cemento_ic, x, y)
+                return this.añadirBloqueEstatico(imagenes.cemento_ic, x, y)
             case this.getCase(simbolo, "M_id"):
-                return this.añadirBloque(imagenes.cemento_id, x, y)
+                return this.añadirBloqueEstatico(imagenes.cemento_id, x, y)
         }
 
         // castillo

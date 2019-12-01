@@ -42,7 +42,9 @@ class Cofre extends BaseInteractuable {
                 layer.jugador.x = layer.spawnX
                 layer.jugador.y = layer.spawnY
 
-                layer.texto = new TextoBocadillo("Ohh, mala suerte...")
+                layer.falo.x = layer.initialFalox;
+
+                layer.texto = new TextoBocadillo("Ohh, mala suerte...");
             }
 
             return this.getObjeto()
