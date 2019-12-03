@@ -12,10 +12,9 @@ class Enemigo extends Modelo {
 
         this.animacion = null
 
-    }
-
-    finAnimacionMorir() {
-        this.estado = estados.muerto;
+        this.coleccionables = []
+        this.coleccionables.push(null)  // no devolver nada
+        this.coleccionables.push(new Moneda(imagenes.moneda))
     }
 
     actualizar() {
@@ -48,11 +47,11 @@ class Enemigo extends Modelo {
 
                 break;
             case estados.muriendo:
-                this.animacion = this.aMorir;
+                this.estado = estados.muerto
                 this.vx = 0;
                 this.vy = 0
+                this.añadirColeccionable()
                 break;
-
         }
     }
 
@@ -66,6 +65,28 @@ class Enemigo extends Modelo {
     impactado() {
         if (this.estado != estados.muriendo) {
             this.estado = estados.muriendo;
+        }
+    }
+
+    getColeccionable() {
+        var random = Math.floor(Math.random() * this.coleccionables.length)
+        var coleccionable = this.coleccionables[random]
+        console.log(this)
+        if (coleccionable) {
+            coleccionable.x = Math.floor(this.x)
+            coleccionable.y = Math.floor(this.y)
+            coleccionable.vx = 0
+            coleccionable.vy = 0
+            return this.clone(coleccionable)
+        }
+        return null
+    }
+
+    añadirColeccionable() {
+        var coleccionable = this.getColeccionable()
+        if (coleccionable !== null) {
+            layer.coleccionables.push(coleccionable)
+            layer.espacio.agregarCuerpoDinamico(coleccionable);
         }
     }
 

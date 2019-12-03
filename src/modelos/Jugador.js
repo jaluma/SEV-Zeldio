@@ -36,10 +36,14 @@ class Jugador extends Modelo {
 
         this.inventario = []
         this.interactuar = false
+        this.delayBomba = 5
+        this.actualBomba = 0
     }
 
     actualizar() {
         this.animacion.actualizar();
+
+        this.actualBomba++
 
         // Establecer orientación
         if (this.vx > 0) {
@@ -102,7 +106,15 @@ class Jugador extends Modelo {
     }
 
     atacar() {
+        if (this.actualBomba >= this.delayBomba * 20) {
+            var bomba = new Bomba(this.x, this.y, 3, 2);
+            bomba.y = bomba.y - bomba.alto / 2;
 
+            this.actualBomba = 0
+
+            return bomba
+        }
+        return null
     }
 
     finAnimacionAtacar() {
@@ -119,7 +131,7 @@ class Jugador extends Modelo {
     perderVida() {
         if (Date.now() - this.lastPerdida > 3 * 1000) {
             this.vidas--
-                this.lastPerdida = Date.now()
+            this.lastPerdida = Date.now()
         }
     }
 

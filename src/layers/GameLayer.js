@@ -18,6 +18,8 @@ class GameLayer extends Layer {
         this.enemigos = [];
         this.npcs = []
 
+        this.bombas = []
+
         this.coleccionables = []
         this.interactuables = []
         this.texto = null
@@ -46,6 +48,7 @@ class GameLayer extends Layer {
             case 1:
                 texto = "¿Tendrás la suerte necesaria?"
                 this.colocarObjeto(Cofre)
+                hablado = true
                 break;
             case 2:
                 texto = "No solo necesitas suerte, sino también paciencia."
@@ -148,6 +151,26 @@ class GameLayer extends Layer {
         }
         for (var i = 0; i < this.bloques.length; i++) {
             this.bloques[i].actualizar();
+        }
+        for (var i = 0; i < this.bombas.length; i++) {
+            this.bombas[i].actualizar();
+            if (this.bombas[i].estado === bombaEstado.haExplotado) {
+                if(this.bombas[i].colisiona(this.jugador)) {
+                    this.jugador.perderVida()
+                    if (this.jugador.vidas <= 0) {
+                        layer = new MenuLayer();
+                        cleanScreen()
+                    }
+                }
+                for (var j = 0; j < this.enemigos.length; j++) {
+                    if(this.bombas[i].colisiona(this.enemigos[j])) {
+                        this.enemigos[j].impactado()
+                    }
+                }
+                this.bombas.splice(i, 1);
+                i = i - 1;
+            }
+            
         }
         for (var i = 0; i < this.bloques.length; i++) {
             if (this.bloques[i].isDestruible()) {
@@ -260,7 +283,6 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.interactuables.length; i++) {
             this.interactuables[i].dibujar(this.scrollX, this.scrollY);
         }
-
         for (var i = 0; i < this.generadoresEnemigos.length; i++) {
             this.generadoresEnemigos[i].dibujar(this.scrollX, this.scrollY);
         }
@@ -269,6 +291,9 @@ class GameLayer extends Layer {
         }
         for (var i = 0; i < this.npcs.length; i++) {
             this.npcs[i].dibujar(this.scrollX, this.scrollY);
+        }
+        for (var i = 0; i < this.bombas.length; i++) {
+            this.bombas[i].dibujar(this.scrollX, this.scrollY);
         }
         this.jugador.dibujar(this.scrollX, this.scrollY);
 
@@ -289,10 +314,10 @@ class GameLayer extends Layer {
     procesarControles() {
         // disparar
         if (controles.atacar) {
-            var nuevoAtaque = this.jugador.atacar;
+            var nuevoAtaque = this.jugador.atacar();
             if (nuevoAtaque != null) {
                 this.espacio.agregarCuerpoDinamico(nuevoAtaque);
-                // hacer algo con el ataque
+                this.bombas.push(nuevoAtaque)
             }
         }
 

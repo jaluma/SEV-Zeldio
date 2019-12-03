@@ -14,6 +14,7 @@ var entrada = entradas.pulsaciones;
 var nivelActual = 0;
 var nivelMaximo = 3;
 
+var hablado = false
 
 var estados = {};
 estados.moviendo = 2; // Incluye parado, derecha , izquierda
@@ -33,6 +34,10 @@ var estadosTile = {};
 estadosTile.normal = 2;
 estadosTile.rompiendo = 3;
 estadosTile.roto = 4;
+
+var bombaEstado = {}
+bombaEstado.explotando = 0
+bombaEstado.haExplotado = 1
 
 var estadosMC = {};
 estadosMC.vacio = 0;

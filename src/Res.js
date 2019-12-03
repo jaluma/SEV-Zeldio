@@ -106,6 +106,8 @@ var imagenes = {
     placa_activada: "res/bloques/cemento/placa_activada.png",
     trampilla: "res/bloques/puertas/door.png",
     escalera: "res/bloques/puertas/stairs.png",
+    bomba: "res/bomba/bomba.png",
+    bomba_explosion: "res/bomba/bomba_anim.png"
 };
 
 var rutasImagenes = Object.values(imagenes);
