@@ -69,4 +69,15 @@ class Enemigo extends Modelo {
         }
     }
 
+
+    getRecompensa(){
+        this.recompensas = [];
+        recompensa[1] = null;
+        recompensa[2] = new Moneda(imagenes.moneda, this.x, this.y);
+        recompensa[3] = new Vida(imagenes.vida, this.x. this.y);
+
+        var recompensa =  this.recompensas[Math.floor(Math.random() * this.recompensas.length)];
+        return recompensa;
+    }
+
 }

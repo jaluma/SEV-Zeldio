@@ -29,13 +29,13 @@ class Jugador extends Modelo {
 
         this.animacion = this.aIdle;
 
-        this.monedas = 0
+        this.monedas = 0;
 
-        this.vidas = 3
-        this.lastPerdida = Date.now()
+        this.vidas = 3;
+        this.lastPerdida = Date.now();
 
-        this.inventario = []
-        this.interactuar = false
+        this.inventario = [];
+        this.interactuar = false;
     }
 
     actualizar() {
@@ -102,7 +102,21 @@ class Jugador extends Modelo {
     }
 
     atacar() {
+        this.estado = estados.atacando;
+        if (this.orientacion == orientaciones.izquierda){
+            var espada = new Espada(this.x-1, this.y);
+        }
+        else if (this.orientacion == orientaciones.derecha){
+            var espada = new Espada(this.x+1, this.y);
+        }
+        else if (this.orientacion == orientaciones.arriba){
+            var espada = new Espada(this.x, this.y-1);
+        }
+        else if (this.orientacion == orientaciones.abajo){
+            var espada = new Espada(this.x, this.y+1);
+        }
 
+        return espada;
     }
 
     finAnimacionAtacar() {
@@ -120,6 +134,10 @@ class Jugador extends Modelo {
         if (Date.now() - this.lastPerdida > 5 * 1000) {
             this.vidas--
                 this.lastPerdida = Date.now()
+        }
+        if (this.vidas == 1){
+            this.vidas --;
+            // fin
         }
     }
 

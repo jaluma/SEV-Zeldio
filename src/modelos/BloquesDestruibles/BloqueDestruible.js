@@ -2,8 +2,7 @@ class BloqueDestruible extends Bloque {
     constructor(rutaImagen, x, y) {
         super(rutaImagen, x, y)
 
-        this.estado = estadosTile.normal
-
+        this.estado = estadosTile.normal;
         this.destruible = 3 * 10
     }
 

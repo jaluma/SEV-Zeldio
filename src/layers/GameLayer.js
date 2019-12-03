@@ -161,9 +161,15 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.enemigos.length; i++) {
             if (this.jugador.colisiona(this.enemigos[i])) {
                 this.jugador.perderVida()
-
                 this.enemigos.splice(i, 1);
                 i = i - 1;
+                this.coleccionables.push(this.enemigos[i].getRecompensa());
+            }
+
+            if (this.nuevoAtaque != null && this.nuevoAtaque.colisiona(this.enemigos[i])){
+                this.enemigos.splice(i, 1);
+                this.enemigos[i].impactado();
+                this.coleccionables.push(this.enemigos[i].getRecompensa());
             }
         }
 
@@ -285,10 +291,11 @@ class GameLayer extends Layer {
     procesarControles() {
         // disparar
         if (controles.atacar) {
-            var nuevoAtaque = this.jugador.atacar;
-            if (nuevoAtaque != null) {
-                this.espacio.agregarCuerpoDinamico(nuevoAtaque);
-                // hacer algo con el ataque
+            this.nuevoAtaque = null;
+            //var nuevoAtaque = this.jugador.atacar();
+            if (this.nuevoAtaque != null) {
+                this.espacio.agregarCuerpoDinamico(this.nuevoAtaque);
+                this.ataquesJugador.push(this.nuevoAtaque);
             }
         }
 
@@ -538,10 +545,11 @@ class GameLayer extends Layer {
         // suelo de madera
         switch (simbolo) {
             case this.getCase(simbolo, "Madh"):
-                var bloque = new TileDestruible(imagenes.madera_h, x, y);
-                bloque.y = bloque.y - bloque.alto / 2;
+                this.bloque = new TileDestruible(imagenes.madera_h, x, y);
+                this.bloque.y = this.bloque.y - this.bloque.alto / 2;
+                this.bloque.rango = 10;
                 // modificación para empezar a contar desde el suelo
-                this.bloques.push(bloque);
+                this.bloques.push(this.bloque);
                 return bloque
             case this.getCase(simbolo, "Madv"):
                 var bloque = new TileDestruible(imagenes.madera_v, x, y);
