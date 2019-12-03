@@ -35,6 +35,7 @@ class Cofre extends BaseInteractuable {
                 var jugador = this.clone(layer.jugador)
 
                 await this.sleep(1000);
+                cleanScreen()
 
                 layer = estadosLayers[nivelActual]
                 layer.jugador.vidas = jugador.vidas

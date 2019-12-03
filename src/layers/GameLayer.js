@@ -164,6 +164,10 @@ class GameLayer extends Layer {
 
                 this.enemigos.splice(i, 1);
                 i = i - 1;
+                if (this.jugador.vidas <= 0) {
+                    layer = new MenuLayer();
+                    cleanScreen()
+                }
             }
         }
 

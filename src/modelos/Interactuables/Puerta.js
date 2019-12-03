@@ -37,6 +37,7 @@ class Puerta extends BaseInteractuable {
         } else { 
             layer.iniciar()
         }
+        cleanScreen()
         layer.jugador.vidas = jugador.vidas
         layer.jugador.monedas = jugador.monedas 
         layer.jugador.x = layer.spawnX

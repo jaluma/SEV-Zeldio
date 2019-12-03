@@ -117,7 +117,7 @@ class Jugador extends Modelo {
     }
 
     perderVida() {
-        if (Date.now() - this.lastPerdida > 5 * 1000) {
+        if (Date.now() - this.lastPerdida > 3 * 1000) {
             this.vidas--
                 this.lastPerdida = Date.now()
         }

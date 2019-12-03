@@ -55,6 +55,10 @@ function actualizarPulsaciones() {
     }
 }
 
+function cleanScreen() {
+    contexto.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 // Cambio de escalado
 window.requestAnimationFrame(loop);
 contexto.fillRect(0, 0, canvas.width, canvas.height);
