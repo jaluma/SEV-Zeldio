@@ -174,7 +174,7 @@ class GameLayer extends Layer {
         }
         for (var i = 0; i < this.bloques.length; i++) {
             if (this.bloques[i].isDestruible()) {
-                if (this.bloques[i].isSaltable() && this.jugador.colisiona(this.bloques[i])) {
+                if (this.bloques[i].isSaltable() && this.bloques[i].colisiona(this.jugador)) {
                     this.destruirBloques(i)
                 }
             }
@@ -491,8 +491,8 @@ class GameLayer extends Layer {
                 break;
             case this.getCase(simbolo, "Save"):
                 // Generador de enemigos
-                this.añadirBloque(imagenes.madera_h, x, y)
-                this.puntoSalvado = new Bloque(imagenes.teleport_naranja, x, y, new Animacion(imagenes.teleport_naranja_a, this.ancho, this.alto, 6, 3))
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.puntoSalvado = new PuntoDeGuardado(x, y)
                 this.puntoSalvado.y =  this.puntoSalvado.y -  this.puntoSalvado.alto / 2;
                 // modificación para empezar a contar desde el suelo
                 this.bloques.push(this.puntoSalvado)
