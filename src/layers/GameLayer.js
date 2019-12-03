@@ -223,11 +223,12 @@ class GameLayer extends Layer {
 
         this.monedas.valor = this.jugador.monedas
 
-        var vidasAEliminar = this.iconoVidas.length - this.jugador.vidas
-        if (vidasAEliminar > 0) {
-            this.iconoVidas.splice(this.iconoVidas.length - vidasAEliminar, vidasAEliminar);
+        var initialX = 0.1
+        this.iconoVidas = []
+        for (var i = 0; i < this.jugador.vidas; i++) {
+            var x = parseFloat(initialX + i * 0.03).toFixed(2)
+            this.iconoVidas.push(new Fondo(imagenes.icono_vidas, resolution.width * x, resolution.height * 0.05))
         }
-
 
         if (this.puntoSalvado != null && this.jugador.colisiona(this.puntoSalvado)){
             if (!this.saved)

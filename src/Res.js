@@ -58,6 +58,7 @@ var imagenes = {
     transparente: "res/bloques/transparente.png",
     moneda: "res/monedas/1.png",
     monedas: "res/monedas/monedas.png",
+    vida: "res/vidas/corazon.png",
     cast1: "res/bloques/castillo/Cas1.png",
     cast2: "res/bloques/castillo/Cas2.png",
     cast3: "res/bloques/castillo/Cas3.png",

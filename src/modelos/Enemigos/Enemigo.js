@@ -15,6 +15,7 @@ class Enemigo extends Modelo {
         this.coleccionables = []
         this.coleccionables.push(null)  // no devolver nada
         this.coleccionables.push(new Moneda(imagenes.moneda))
+        this.coleccionables.push(new Vida(imagenes.vida))
     }
 
     actualizar() {
@@ -71,7 +72,6 @@ class Enemigo extends Modelo {
     getColeccionable() {
         var random = Math.floor(Math.random() * this.coleccionables.length)
         var coleccionable = this.coleccionables[random]
-        console.log(this)
         if (coleccionable) {
             coleccionable.x = Math.floor(this.x)
             coleccionable.y = Math.floor(this.y)
@@ -83,7 +83,10 @@ class Enemigo extends Modelo {
     }
 
     añadirColeccionable() {
-        var coleccionable = this.getColeccionable()
+        do {
+            var coleccionable = this.getColeccionable()
+        } while (layer.jugador.vidas >= 3 && coleccionable instanceof Vida)
+
         if (coleccionable !== null) {
             layer.coleccionables.push(coleccionable)
             layer.espacio.agregarCuerpoDinamico(coleccionable);
