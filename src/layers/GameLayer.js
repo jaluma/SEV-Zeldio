@@ -182,7 +182,7 @@ class GameLayer extends Layer {
 
         // colisiones
         for (var i = 0; i < this.enemigos.length; i++) {
-            if (this.jugador.colisiona(this.enemigos[i])) {
+            if (this.jugador.colisiona(this.enemigos[i]) && this.enemigos[i].estado != estados.muriendo) {
                 this.jugador.perderVida()
 
                 this.enemigos.splice(i, 1);
