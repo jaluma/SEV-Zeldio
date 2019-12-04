@@ -25,7 +25,7 @@ class Mario extends Npc {
 
     async accion() {
         this.ponerFeliz()
-        await this.mostrarBocadillo("¡Graciias! Te debo una. ")
+        await this.mostrarBocadillo("¡¡Gracias, te debo una!! ")
         layer = new FinishLayer();
         controles.continuar = false;
     }

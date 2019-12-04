@@ -112,7 +112,8 @@ var imagenes = {
     trampilla: "res/bloques/puertas/door.png",
     escalera: "res/bloques/puertas/stairs.png",
     bomba: "res/bomba/bomba.png",
-    bomba_explosion: "res/bomba/bomba_anim.png"
+    bomba_explosion: "res/bomba/bomba_anim.png",
+    menuFinal_fondo : "res/menuFinal_fondo.png"
 };
 
 var rutasImagenes = Object.values(imagenes);
