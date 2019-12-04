@@ -89,7 +89,7 @@ var imagenes = {
     rickEnemigoArriba: "res/enemigos/rick/rick_arriba.png",
     rickEnemigoIzquierda: "res/enemigos/rick/rick_izquierda.png",
     rickEnemigoDerecha: "res/enemigos/rick/rick_derecha.png",
-    rickEnemigoMorir: "res/enemigos/rick/1.png",
+    rickEnemigoMorir: "res/enemigos/rick/rick_morir.png",
     faloNpc: "res/npc/falo/falo.png",
     faloNpcIdle: "res/npc/falo/falo_idle.png",
     faloNpcDerecha: "res/npc/falo/falo_derecha.png",
