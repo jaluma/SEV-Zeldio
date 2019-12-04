@@ -74,7 +74,8 @@ class GameLayer extends Layer {
     }
 
     generarOrden(prototype) {
-        var array = this.shuffle(Array.from({ length: this.interactuables.filter(i => i instanceof prototype).length }, (_, id) => ({ id })))
+        this.numPlacas = this.interactuables.filter(i => i instanceof prototype).length
+        var array = this.shuffle(Array.from({ length: this.numPlacas }, (_, id) => ({ id })))
         var count = 0;
         for (var i = 0; i < this.interactuables.length; i++) {
             if (this.interactuables[i] instanceof prototype) {
@@ -424,6 +425,12 @@ class GameLayer extends Layer {
                 break;
             case "Mari":
                 // mario
+                this.mario = new Mario(x, y)
+                this.mario.y = this.mario.y - this.mario.alto / 2;
+                this.initialFalox = x;
+                this.npcs.push(this.mario);
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.espacio.agregarCuerpoDinamico(this.mario);
                 break;
         }
 
@@ -454,6 +461,13 @@ class GameLayer extends Layer {
                 this.añadirBloque(imagenes.pedestal, x, y)
                 this.marcar(moai)
                 this.añadirModeloEstatico(moai)
+                break;
+            case this.getCase(simbolo, "Pede"):
+                // pedestal
+                var pedestal = new Pedestal(x, y);
+                this.añadirBloque(bloquePorDefecto, x, y)
+                this.marcar(pedestal)
+                this.añadirModeloEstatico(pedestal)
                 break;
             case this.getCase(simbolo, "CofA"):
                 // cofre

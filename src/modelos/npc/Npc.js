@@ -16,30 +16,33 @@ class Npc extends Modelo {
         this.tiempoBloque = this.ancho
         this.delay = this.tiempoBloque
         this.ms = 0
+        this.movimientoAnimaciones = true
     }
 
     actualizar() {
-        // nos movemos durante x tiempo
-        if (this.ms++ < this.delay) {
-            if (this.vx != 0) {
-                if (this.vx > 0) {
-                    this.animacion = this.aDerecha
+        if (this.movimientoAnimaciones) {
+            // nos movemos durante x tiempo
+            if (this.ms++ < this.delay) {
+                if (this.vx != 0) {
+                    if (this.vx > 0) {
+                        this.animacion = this.aDerecha
+                    } else {
+                        this.animacion = this.aIzquierda
+                    }
+                } else if (this.vy != 0) {
+                    if (this.vy > 0) {
+                        this.animacion = this.aAbajo
+                    } else {
+                        this.animacion = this.aArriba
+                    }
                 } else {
-                    this.animacion = this.aIzquierda
-                }
-            } else if (this.vy != 0) {
-                if (this.vy > 0) {
-                    this.animacion = this.aAbajo
-                } else {
-                    this.animacion = this.aArriba
+                    this.animacion = this.aIdle
                 }
             } else {
                 this.animacion = this.aIdle
+                this.vx = 0
+                this.vy = 0
             }
-        } else {
-            this.animacion = this.aIdle
-            this.vx = 0
-            this.vy = 0
         }
 
         if (this.animacion != null) {

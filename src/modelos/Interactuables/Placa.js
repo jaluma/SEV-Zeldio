@@ -44,6 +44,16 @@ class Placa extends BaseInteractuable {
                 this.activar()
                 this.objeto = "Placa " + layer.orden + " activada."
                 this.ultimaVezActivada = now
+                if (layer.numPlacas == layer.orden) {
+                    layer.mario.ponerFeliz()
+                    for (var i = 0; i < layer.bloques.length; i++) {
+                        if (layer.bloques[i] instanceof Pedestal) {
+                            layer.espacio.eliminarCuerpoEstatico(layer.bloques[i])
+                            layer.bloques.splice(i, 1);
+                            i = i - 1;
+                        }
+                    }
+                }
             } else {
                 layer.orden = 0
                 this.objeto = null
