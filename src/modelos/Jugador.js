@@ -107,8 +107,7 @@ class Jugador extends Modelo {
 
     atacar() {
         if (this.actualBomba >= this.delayBomba * 20) {
-            var bomba = new Bomba(this.x, this.y, 3, 2);
-            bomba.y = bomba.y - bomba.alto / 2;
+            var bomba = new Bomba(this.x, this.y, 5, 2);
 
             this.actualBomba = 0
 

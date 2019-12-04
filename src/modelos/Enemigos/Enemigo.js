@@ -16,6 +16,14 @@ class Enemigo extends Modelo {
         this.coleccionables.push(null)  // no devolver nada
         this.coleccionables.push(new Moneda(imagenes.moneda))
         this.coleccionables.push(new Vida(imagenes.vida))
+
+        this.delay = 3000
+        this.actual = 0
+    }
+
+    finAnimacionMorir() {
+        this.estado = estados.muerto;
+        this.añadirColeccionable()
     }
 
     actualizar() {
@@ -48,10 +56,14 @@ class Enemigo extends Modelo {
 
                 break;
             case estados.muriendo:
-                this.estado = estados.muerto
+                this.animacion = this.aMorir;
                 this.vx = 0;
-                this.vy = 0
-                this.añadirColeccionable()
+                this.vy = 0;
+
+                if (this.actual++ >= this.delay) {
+                    this.finAnimacionMorir()
+                }
+
                 break;
         }
     }
