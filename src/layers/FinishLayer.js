@@ -22,6 +22,7 @@ class FinishLayer extends Layer {
         if (controles.continuar) {
             layer = new MenuLayer();
             controles.continuar = false;
+            nivelActual = 0
         }
     }
 
